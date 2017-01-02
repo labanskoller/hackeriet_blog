@@ -11,6 +11,8 @@ description: Ikke akkurat NRK Beta
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /blog/images/hackeriet-logo.png
 
+excerpt_separator: "" # Try with full text on front page
+
 #
 # Flags below are optional
 #
