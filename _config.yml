@@ -9,7 +9,7 @@ name: Hackeriet β
 description: Ikke akkurat NRK Beta
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: /blog/images/hackeriet-logo.png
+avatar: /images/hackeriet-logo.png
 
 excerpt_separator: "<!-- excerpt -->" 
 
