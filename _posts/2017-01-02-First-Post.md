@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Første post!
+title: Fyrst post!
 author: Thomas Myrbråten
 category: meta
 ---
 
-Test!
+ b
 
