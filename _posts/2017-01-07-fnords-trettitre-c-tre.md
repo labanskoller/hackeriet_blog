@@ -4,6 +4,7 @@ title: "33c3: talks round-up"
 author: fnords
 category: meta
 ---
+![All Computers Are Broken](/images/acab.jpg)
 
 'Twas that most wonderful time of the year: CCC congress time!! 12000+ hackers from all over the planet were gathered in Hamburg for four days of glorious haxx, workshops, meetups, ctfs, raves, mainlining club mate....... and attending some talks along the way.  
 
