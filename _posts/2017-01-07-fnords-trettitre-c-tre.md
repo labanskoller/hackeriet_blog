@@ -1,6 +1,6 @@
 ---
 layout: post
-title: What 33c3: talks round-up
+title: 33c3 talks round-up
 author: fnords
 category: meta
 ---
