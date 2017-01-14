@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Fyrst post!
-author: Thomas Myrbråten
+author: Jan Banan
 category: meta
 ---
 
@@ -12,5 +12,7 @@ tillegg mange gode. Et sted må man begynne, og det er her. Denne bloggen er her
 for at folk på Hackeriet kan skrive om hva de holder på med eller tenker på,
 under sitt eget eller et påfunnet navn.
 
-Språket 
+Språk er valgfritt, men jeg håper på en del norsk for det  
+
+
 
