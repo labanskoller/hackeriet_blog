@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CTF: Our lost door combination"
-author: fnords
+author: capitol
 category: ctf
 ---
 ![lock](/images/lock.jpg)
