@@ -8,6 +8,7 @@ category: ctf
 
 ##### category:
 web
+
 ##### points:
 50
 
