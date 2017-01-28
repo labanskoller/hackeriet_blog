@@ -18,9 +18,9 @@ crypto
 #### Writeup
 Our friends over at xil.se have written some challenges for a ctf named smash the stack at https://ctf.anti-network.org/
 
-The challenge RSA is for everyone required you to send and retrieve messages with RSA. Fortunate it is really easy to implement RSA yourself in java (don't do this at home kids).
+The challenge "RSA is for everyone" required you to send and retrieve messages with RSA. Fortunately it is really easy to implement RSA yourself in java (don't try this at home kids).
 
-The class for getting the RSA primitives looks like this (some code shamelessly stolen from stack overflow, like all real programmers do):
+The class for getting the RSA primitives looks like this (some code shamelessly stolen from Stack Overflow, like all real programmers do):
 
 ```java
 public class RSA {
