@@ -16,7 +16,7 @@ crypto
 350
 
 #### Writeup
-The nullcon ctf competition ran this weekend, and the organizers managed to completly give away one of the crypto challenges by giving out a hint that made it trivial.
+The nullcon ctf competition ran this weekend, and the organizers managed to completely give away one of the crypto challenges by giving out a hint that made it trivial.
 
 The problem was given as this image: [problem](/images/cryptopuzzle2.png)
 
