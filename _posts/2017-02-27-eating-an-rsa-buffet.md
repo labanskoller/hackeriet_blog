@@ -26,7 +26,7 @@ We used four different attacks on RSA in order to retrieve five of the keys.
 ##### Brute force to find key 2
 
 One of the primes for key number two was really small, only 2758599203, we
-could have just used brute force to calculate it, but instead we found it in factordb: http://factordb.com/index.php?id=1100000000906574033
+could have just used brute force to calculate it, but instead we found it in [factordb](http://factordb.com/index.php?id=1100000000906574033)
 
 ##### Greatest common divisor to find both key 0 and 6
 
