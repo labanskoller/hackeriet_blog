@@ -16,7 +16,7 @@ crypto
 150
 
 #### Writeup
-During the 2017 Boston Key Party we were presented with a very nice buffet of RSA key to crack.
+During the 2017 Boston Key Party we were presented with a very nice buffet of RSA keys to crack.
 
 There where 10 different keys and five of them decrypted five other cipher texts. Any three of
 those five could be combined with the help of [secret sharing](https://github.com/blockstack/secret-sharing) to get the flag.
@@ -25,13 +25,13 @@ We used four different attacks on RSA in order to retrieve five of the keys.
 
 ##### Brute force to find key 2
 
-One of the primes for key number two was really small, only 2758599203, we
+One of the primes for key number two was really small, only 2758599203. We
 could have just used brute force to calculate it, but instead we found it in [factordb](http://factordb.com/index.php?id=1100000000906574033)
 
 ##### Greatest common divisor to find both key 0 and 6
 
-Finding if to numbers have a common divisor is extremely efficient, it's done with one of
-the oldest known algorithms, the Euclidean algorithm.
+Finding out if two numbers have a common divisor is extremely efficient, it's done with one of
+the oldest known algorithms: the Euclidean algorithm.
 
 Comparing all the keys with each other takes no time at all:
 
@@ -50,7 +50,7 @@ Comparing all the keys with each other takes no time at all:
     }
 ```
 
-That gave us that there was an reused prime between key 0 and 6.
+We found a reused prime between key 0 and 6. 
 
 
 ##### Fermat's Factorization Method to find key 1
@@ -113,11 +113,11 @@ public class Fermat {
 
 ##### Wiener attack to solve key 3
 
-Key 3 had a really big e, that was a good hint that we could use the wiener attack.
+Key 3 had a really big e, this was a good hint that we could use the wiener attack.
 
-RSA isn't an algorithm that's very well suited to run on very constrained systems.
-This has lead people to try to speed it up, and one thing that they tried was to have
-a small d and a large e. Michael J. Wiener was the man who developed this attack.
+RSA isn't an algorithm very well suited to run on constrained systems.
+This has led people to try to speed it up, and one thing that they tried was to have
+a small d and a large e. Michael J. Wiener was the man who developed an attack against that.
 
 The implementation that we used was this one:
 
