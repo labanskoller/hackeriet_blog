@@ -18,7 +18,7 @@ crypto
 #### Writeup
 
 We were given two images, both containing black and white noise.
-[A](/images/volga_vc_A.png) [B](/images/volga_vc_B.png)
+![A](/images/volga_vc_A.png) ![B](/images/volga_vc_B.png)
 
 Since it's a crypto challege with low points, we guessed that it's a simple XOR.
 
@@ -29,7 +29,7 @@ convert A.png B.png -fx "(((255*u)&(255*(1-v)))|((255*(1-u))&(255*v)))/255" C.pn
 ```
 
 That produced this result:
-[C](/images/volga_vc_C.png)
+![C](/images/volga_vc_C.png)
 
 
 Flag: VolgaCTF{Classic_secret_sharing_scheme}
