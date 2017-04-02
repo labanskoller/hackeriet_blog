@@ -1,17 +1,17 @@
 ---
 layout: post
-title: "Detect security problems compile time"
+title: "Detect security problems at compile time"
 author: capitol
 category: security
 ---
 ![bits](/images/java.jpg)
 
 A large part of modern software engineering consists of standing on the shoulders of others
-code, this makes us more productive and lets us focus on the solving our business problems
+people code, this makes us more productive and lets us focus on the solving our business problems
 rather than reinventing wheels all the time.
 
 But sometimes security problems are discovered in those libraries, if the project is well
-maintained they request a CVE number, patch the flaw and release a new version. CVE numbers
+maintained they request a CVE number, patch the bug and release a new version. CVE numbers
 are the canonical identifiers for security problems and they are issued by the 
 [CVE Numbering Authority](https://cve.mitre.org/cve/cna.html).
 
