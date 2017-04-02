@@ -56,7 +56,7 @@ bcprov-jdk15on-1.49.jar (cpe:/a:bouncycastle:bouncy-castle-crypto-package:1.49, 
 See the dependency-check report for more details.
 ```
 
-And this [report](({{ site.baseurl }}{% link /assets/dependency-check-report.html %})) is
+And this [report]({% link /assets/dependency-check-report.html %}) is
 produced.
 
 It's also possible to configure it to fail the build on any vulnerability, or if a
