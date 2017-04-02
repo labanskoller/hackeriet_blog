@@ -6,8 +6,8 @@ category: security
 ---
 ![bits](/images/java.jpg)
 
-A large part of modern software engineering consists of standing on the shoulders of others
-people code, this makes us more productive and lets us focus on the solving our business problems
+A large part of modern software engineering consists of standing on the shoulders of other
+peoples code, this makes us more productive and lets us focus on the solving our business problems
 rather than reinventing wheels all the time.
 
 But sometimes security problems are discovered in those libraries, if the project is well
