@@ -54,8 +54,8 @@ in the most unhealthy or immoral way ) or they are married to a local owning, qu
 a chinese passport.
 
 In Shanghai there are, as far as i know, at least a [fablab](https://www.fablabs.io/labs/ShanghaiFablab)
-and two hackerspaces. Of the latter ctegory the first to be established in Shanghai is called [Xin Che Jian](https://xinchejian.com/about-2/),
-and is located in the commercial area og Jing'an Temple. Xin Che Jian has regulars meetups and open nights
+and two hackerspaces. Of the latter category, and the first to be established in Shanghai, [Xin Che Jian](https://xinchejian.com/about-2/),
+is located in the commercial area og Jing'an Temple. Xin Che Jian has regulars meetups and open nights
 for visitors, one every wed.
 
 Getting there was quite easy and i was greeted at the entrance by one of the members.
