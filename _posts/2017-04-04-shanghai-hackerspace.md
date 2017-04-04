@@ -43,9 +43,10 @@ chinese massage parlours.
 Shanghai features also six universities, 24 millions inhabitants
 and a killer yearly grow rate. Most of the foreigners i have met work in the design industry,
 are quite well off, and almost always share the desire to leave China. This  desire they often
-have had for several years without managing to actually leave, either because their countries
+have had for several years without managing to actually leave, either because their home countries
 can't offer the same work opportunities, or because they are having too much fun ( not necessarily
-in the most unhealthy or immoral way ) or they are married to a local with a chinese passport.
+in the most unhealthy or immoral way ) or they are married to a local owning, quite naturally,
+a chinese passport.
 
 In Shanghai there are, as far as i know, at least a [fablab](https://www.fablabs.io/labs/ShanghaiFablab)
 and two hackerspaces. Of the latter ctegory the first to be established in Shanghai is called [Xin Che Jian](https://xinchejian.com/about-2/),
