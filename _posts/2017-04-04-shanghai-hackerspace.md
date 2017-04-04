@@ -31,7 +31,7 @@ between 1840 and 1940, coinciding with the western presence in this port city.
 ![tipa](/images/xinchejan/tipa.jpg)
 ![carte](/images/xinchejan/carte.jpg)
 
-Lanes of two stories buildings often feature delicate small backyards and
+Lanes of two stories buildings often feature small backyards and
 public internal alleys, where local shops like local hairdressers and small workshops overlap
 with shared kitchens, kids play areas and old chaps playing cards, and where the boundaries
 between public and private are blurry. Just outside of the lilongs the roads are quiet,
