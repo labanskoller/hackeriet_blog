@@ -97,7 +97,7 @@ A weird biological codependence project featuring fishes and plants
 ![fish](/images/xinchejan/IMG_20170322_201610.jpg)
 ![fish2](/images/xinchejan/IMG_20170322_202623.jpg)
 
-See you next time!
+See you next time Shanghai!
 
 ![pudong2](/images/xinchejan/puddu.jpg)
 
