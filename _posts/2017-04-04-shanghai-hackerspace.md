@@ -23,7 +23,7 @@ between 1840 and 1940, coinciding with the western presence in this port city.
 
 ![pudong](/images/xinchejan/pudong.jpg)
 ![contrast](/images/xinchejan/contrast.jpg)
-![lilongs](/images/xinchejan/lilongs.jpeg)
+![lilongs](/images/xinchejan/lilongs.jpg)
 ![chaps](/images/xinchejan/chaps.jpg)
 
 Lanes of two stories buildings often feature delicate small backyards and
@@ -56,7 +56,7 @@ for visitors, one every wed.
 Getting there was quite easy and i was greeted at the entrance by one of the members.
 The space is not very big and is at the bottom of an office building, and is completely stuffed
 up with projects. Mainly we are talking about hardware projects, someone says because of
-"nostalgia of the manufacture past. Few people are making stuffs with their hands".
+"nostalgia of the manufacture past. Few people are making stuffs with their hands nowadays".
 
 The room is also filled with people when i arrive, most of them are locals.
 Three short presentations unroll in the course of an hour, one about Arduino basics, one about
@@ -67,7 +67,7 @@ few westerners in the room.
 The introduction by Freda, one of the many girls hanging at the space tonight, is all about the spirit of the space.
 "At Xin Che Jian you can make your dreams come true. But, nobody else than you will make this happen, because
 here, although people help each other and learn from each other, no one will pursue your goals, no matter how good they are".
-I immediatly feel sympathy for these people, since i am very well known with this concept from Hackeriet.
+I immediatly feel sympathy for this community, since i am very well accustomed to this same idea from Hackeriet.
 Freda used to be an artist and got gradually got more and more interested in technology, fascinated by the empowerment
 she felt by hanging around with makers and hackers, and the fullfillment feeling of completing a challenging project.
 She names at least one project, about a special pair of headphones ideated at Xin Che Jian, that became an actual mass produced
