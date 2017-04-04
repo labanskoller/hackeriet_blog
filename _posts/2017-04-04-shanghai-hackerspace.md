@@ -98,3 +98,6 @@ A weird biological codependence project featuring fishes and plants
 ![fish2](/images/xinchejan/IMG_20170322_202623.jpg)
 
 See you next time!
+
+![pudong2](/images/xinchejan/puddu.jpg)
+
