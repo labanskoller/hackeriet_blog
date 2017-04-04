@@ -10,6 +10,8 @@ A couple of weeks ago i was in China visiting Shanghai, driven by curiosity.
 Most of the news i read about China are about the alarming levels of air pollution,
 the exploitation of labour and of course censorship and lack of civil liberties.
 
+![cameras](/images/xinchejan/cameras.jpg)
+
 I found out that although these are all true, Shanghai has also much more to offer.
 For example some of the best and cheapest food i have ever had, a lively cultural
 scene and a quite stilish and laid back lifestyle. Also impressive is the
@@ -25,6 +27,9 @@ between 1840 and 1940, coinciding with the western presence in this port city.
 ![contrast](/images/xinchejan/contrast.jpg)
 ![lilongs](/images/xinchejan/lilongs.jpg)
 ![chaps](/images/xinchejan/chaps.jpg)
+![noodles](/images/xinchejan/noodles.jpg)
+![tipa](/images/xinchejan/tipa.jpg)
+![carte](/images/xinchejan/carte.jpg)
 
 Lanes of two stories buildings often feature delicate small backyards and
 public internal alleys, where local shops like local hairdressers and small workshops overlap
@@ -91,3 +96,5 @@ A weird biological codependence project featuring fishes and plants
 
 ![fish](/images/xinchejan/IMG_20170322_201610.jpg)
 ![fish2](/images/xinchejan/IMG_20170322_202623.jpg)
+
+See you next time!
