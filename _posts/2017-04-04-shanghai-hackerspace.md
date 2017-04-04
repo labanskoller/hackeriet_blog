@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Visiting Xin Che Jan hackerspace in Shanghai"
+title: "Visiting Xin Che Jian hackerspace in Shanghai"
 author: head
 category: hackerspaces
 ---
@@ -48,8 +48,8 @@ can't offer the same work opportunities, or because they are having too much fun
 in the most unhealthy or immoral way ) or they are married to a local with a chinese passport.
 
 In Shanghai there are, as far as i know, at least a [fablab](https://www.fablabs.io/labs/ShanghaiFablab)
-and two hackerspaces. Of the latter ctegory the first to be established in Shanghai is called [Xin Che Jan](https://xinchejian.com/about-2/),
-and is located in the commercial area og Jing'an Temple. Xin Che Jan has regulars meetups and open nights
+and two hackerspaces. Of the latter ctegory the first to be established in Shanghai is called [Xin Che Jian](https://xinchejian.com/about-2/),
+and is located in the commercial area og Jing'an Temple. Xin Che Jian has regulars meetups and open nights
 for visitors, one every wed.
 
 Getting there was quite easy and i was greeted at the entrance by one of the members.
@@ -64,12 +64,12 @@ Not all the speakers can speak English, but the staff members simoultaneously tr
 few westerners in the room.
 
 The introduction by Freda, one of the many girls hanging at the space tonight, is all about the spirit of the space.
-"At Xin Che Jan you can make your dreams come true. But, nobody else than you will make this happen, because
+"At Xin Che Jian you can make your dreams come true. But, nobody else than you will make this happen, because
 here, although people help each other and learn from each other, no one will pursue your goals, no matter how good they are".
 I immediatly feel sympathy for these people, since i am very well known with this concept from Hackeriet.
 Freda used to be an artist and got gradually got more and more interested in technology, fascinated by the empowerment
 she felt by hanging around with makers and hackers, and the fullfillment feeling of completing a challenging project.
-She names at least one project, about a special pair of headphones ideated at Xin Che Jan, that became an actual mass produced
+She names at least one project, about a special pair of headphones ideated at Xin Che Jian, that became an actual mass produced
 good in China and abroad.
 
 After the talks we are shown some of the projects.
