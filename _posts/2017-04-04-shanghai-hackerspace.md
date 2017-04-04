@@ -101,3 +101,4 @@ See you next time Shanghai!
 
 ![pudong2](/images/xinchejan/puddu.jpg)
 
+All [images](https://www.flickr.com/photos/enricorazzetti/albums/72157679515290822) in this post are licensed under [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/)
