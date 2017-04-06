@@ -22,7 +22,7 @@ High skyscrapers boasting with activities, 4 lanes elevated roads, huge shopping
 and 15 metro lines coexist side by side with quiet and elegant districts, known as
 the lilongs settlements, an architectural heritage of the pre-communist era, built
 between 1840 and 1940, coinciding with the western presence in this port city.
-
+<!-- excerpt -->
 ![pudong](/images/xinchejan/pudong.jpg)
 ![contrast](/images/xinchejan/contrast.jpg)
 ![lilongs](/images/xinchejan/lilongs.jpg)
