@@ -30,7 +30,7 @@ them, I recommend two things, a solid theoretical understanding and lots of prac
 One of the classic books on the subject is "Handbook of Applied Cryptography" and is
 available for free here:
 
-http://cacr.uwaterloo.ca/hac/
+[HAC](http://cacr.uwaterloo.ca/hac/)
 
 #### Useful Libraries
 
@@ -38,9 +38,9 @@ There is a lot of libraries that implement cryptographic primitives so that you 
 have to reinvent wheels. I have listed to two biggest ones for python and java below,
 but there isn't any shortage of libraries for other languages.
 
-Python: https://pypi.python.org/pypi/pycrypto
+Python: [pycrypto](https://pypi.python.org/pypi/pycrypto)
 
-Java: https://www.bouncycastle.org/java.html
+Java: [bouncycastle](https://www.bouncycastle.org/java.html)
 
 #### Training Exercises
 
@@ -50,11 +50,11 @@ implement solutions.
 
 The best set of training exercises I have found is the cryptopals one.
 
-http://cryptopals.com
+[cryptopals](http://cryptopals.com)
 
-https://overthewire.org/wargames/krypton/
+[krypton](https://overthewire.org/wargames/krypton/)
 
-https://www.root-me.org/en/Challenges/Cryptanalysis/
+[Cryptanalysis](https://www.root-me.org/en/Challenges/Cryptanalysis/)
 
 
 <sub><sup>(image by parameter_bond, Creative Commons 2.0)</sup></sub>
