@@ -25,14 +25,14 @@ maybe the implementation of the random number generator can be attacked.
 In order to be able to understand the how to build secure systems, or how to attack
 them, I recommend two things, a solid theoretical understanding and lots of practice.
 
-####Theoretical Texts
+#### Theoretical Texts
 
 One of the classic books on the subject is "Handbook of Applied Cryptography" and is
 available for free here:
 
 http://cacr.uwaterloo.ca/hac/
 
-####Useful Libraries
+#### Useful Libraries
 
 There is a lot of libraries that implement cryptographic primitives so that you don't
 have to reinvent wheels. I have listed to two biggest ones for python and java below,
@@ -42,7 +42,7 @@ Python: https://pypi.python.org/pypi/pycrypto
 
 Java: https://www.bouncycastle.org/java.html
 
-####Training Exercises
+#### Training Exercises
 
 Theoretical knowledge is great, but there is no more effective way to learn something
 than to practice it. These are sets of challenges that lets you try to figure and 
