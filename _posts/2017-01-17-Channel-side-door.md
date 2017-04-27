@@ -2,7 +2,7 @@
 layout: post
 title: "CTF: A channel side door problem"
 author: capitol
-category: ctf
+category: challenge
 ---
 ![channel](/images/channel.jpg)
 

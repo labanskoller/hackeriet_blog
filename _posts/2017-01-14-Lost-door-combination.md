@@ -2,7 +2,7 @@
 layout: post
 title: "CTF: Our lost door combination"
 author: capitol
-category: ctf
+category: challenge
 ---
 ![lock](/images/lock.jpg)
 
