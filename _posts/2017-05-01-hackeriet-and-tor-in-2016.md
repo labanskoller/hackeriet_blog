@@ -12,15 +12,15 @@ We at hackeriet started our tor node one year ago, with help from the
 The node is still happily churning out encrypted data to different parts of the 
 internet, as can be seen on out [network graphs](https://munin.hackeriet.no/munin/hackeriet.no/tor-node001.hackeriet.no/if_eth0.html).
 
-####Our setup
-#####Hardware
+#### Our setup
+##### Hardware
 We started the project with a dedicated 1U rack machine, a HP ProLiant DL160 G5 Server,
 it had four cores and 20 gig of ram.
 
 This turned out to be way more iron than what we needed in order to power to node, so
 in september the machine was converted to a virtual machine in our proxmox cluster.
 
-#####Software
+##### Software
 The machine was installed with Debian 8 and setup to automatically install security
 updates. The tor software was installed with the help of debian packages.
 
@@ -29,7 +29,7 @@ both.
 
 The munin monitoring software ran on a separate machine.
 
-####What happened
+#### What happened
 
 We had a hardware failure on the machine that hosted the munin graphs, and as those
 were complimentary we didn't have backups of them.
@@ -45,7 +45,7 @@ as our node is quite stable.
 Right now the latest stable version of tor have just been [released](https://blog.torproject.org/blog/tor-0306-released-new-series-stable)
 and we are in the process of upgrading to it.
 
-####What we learned
+#### What we learned
 
 There has been a lot of drama in the tor project during 2016, one of the
 main activists resigned due to committing acts of [sexual harassment](https://blog.torproject.org/blog/statement).
@@ -57,7 +57,7 @@ There were also an attack on the tor network performed by FBI And Carnegie Mello
 in 2014, more information on the [circumstances](http://qntra.net/2016/02/silk-road-2-0-case-confirms-fbi-and-cmu-tor-attack-collaboration/)
 was published and combed over by the community.
 
-####What will happen now
+#### What will happen now
 
 We will continue to host our entry node, as tor is still one of the best projects
 for ensuring freedom from some of those that want to monitor your network traffic.
