@@ -10,20 +10,20 @@ Let us go over the stack we use to power this blog and why it's both easy to use
 and fast for our visitors.
 
 The goal is to serve the blog as fast as possible, while avoiding the constant
-stream of security holes that wordpress exposes its users for.
+stream of security holes that wordpress exposes its users to.
 
-We achieve this by only serving static content, that is updated every time that
+We achieve this by serving static content only, that is updated every time that
 someone pushes new content to the git repository that backs the blog.
 
-We server this over http/2 and both IPv4 and Ipv6, in order to take advantage of
-the improvements in the new protocols.
+We serve the content over http/2 and both IPv4 and Ipv6, in order to take
+advantage of the improvements in the new protocols.
 
 ### Setup
 
-#### Debian jessie
+#### Debian Jessie
 
 We use [debian](https://www.debian.org/) jessie as a base distribution,
-they do a reasonable job of patching security issues and have almost all the
+they do a reasonable good job of patching security issues and have almost all the
 software we need packaged.
 
 In regard to security, we think that the most likely attack is that someone
@@ -72,7 +72,7 @@ that mobile devices doesn't have to go through a carrier grade NAT (CGN) in orde
 reach the site. CGN's can add significant amount of latency when the conditions are
 bad.
 
-The tls protocol is limited to only TLSv1.2 as all modern browsers have supported it
+The TLS protocol is limited to only TLSv1.2 as all modern browsers have supported it
 for a long time, the protocol was released in 2008. If there is someone out there 
 that still can't use it, they need to seriously rethink how they manage their software.
 
@@ -87,10 +87,10 @@ of the blog will have a better experience.
 
 #### Let's encrypt
 
-The [Let's encrypt](https://letsencrypt.org/) project is our tls certificate
+The [Let's encrypt](https://letsencrypt.org/) project is our TLS certificate
 provider, they have enabled the world to move away from the insecure http protocol.
 
-Let's encrypt lets us automate the signing of the certificate that tls uses. We
+Let's encrypt lets us automate the signing of the certificate that TLS uses. We
 use [certbot](https://certbot.eff.org/) in standalone mode for this.
 
 The openssl package needs to be installed from jessie backports also, since nginx was
