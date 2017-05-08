@@ -10,7 +10,7 @@ Let us go over the stack we use to power this blog and why it's both easy to use
 and fast for our visitors.
 
 The goal is to serve the blog as fast as possible, while avoiding the constant
-stream of security holes that wordpress exposes it's users for.
+stream of security holes that wordpress exposes its users for.
 
 We achieve this by only serving static content, that is updated every time that
 someone pushes new content to the git repository that backs the blog.
@@ -28,7 +28,7 @@ software we need packaged.
 
 In regard to security, we think that the most likely attack is that someone
 reuse a known exploit rather than burn a 0-day on us. So the most important
-thing is to not have any unpatched software in our stack. In order to archive this
+thing is to not have any unpatched software in our stack. In order to achieve this
 we have configured apt to automatically download and install security patches,
 as described [here](https://wiki.debian.org/UnattendedUpgrades).
 
