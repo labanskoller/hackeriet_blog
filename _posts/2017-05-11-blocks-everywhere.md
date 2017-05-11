@@ -6,7 +6,7 @@ category: challenge
 ---
 ![blocks](/images/blocks.jpg)
 
-We have made our own json web tokens, with AES and blocks! And without json.
+We have made our own JSON web tokens, with AES and blocks! And without JSON.
 
 Access the puzzle here:
 
