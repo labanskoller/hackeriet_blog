@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Finding side channel attacks on jasypt 1.8"
+title: "Finding side channel attacks in jasypt 1.8"
 author: capitol
 category: challenge
 ---
