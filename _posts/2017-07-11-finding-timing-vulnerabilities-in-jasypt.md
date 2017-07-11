@@ -2,7 +2,7 @@
 layout: post
 title: "Finding side channel attacks in jasypt 1.8"
 author: capitol
-category: challenge
+category: security
 ---
 ![stopwatch](/images/Time-Lapse-Stopwatch.jpg)
 
@@ -140,3 +140,8 @@ I strongly advise everyone who uses jasypt to upgrade to version 1.9.2.
 The maintainers of jasypt was contacted in advance of the publication but were
 unresponsive. The debian security team was also contacted, as jasypt is packaged by
 debian. Mitre assigned it [CVE-2014-9970](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-9970).
+
+##### Update
+
+The author of the code contacted us on twitter and pointed out that this bug was
+described in the [changelog of version 1.9.2](http://jasypt.org/changelogs/jasypt/ChangeLog.txt).
