@@ -25,7 +25,7 @@ The server didn't use the complete byte range and it was a hassle to find out wh
 
 This meant that we could write some simple heuristics to decide which of the strings to send back, the same plain text character always encrypts to the same encrypted character, so we could look at what characters in the ecrypted text are equal to determine what plain text to send back.
 
-implemented like this:
+Implemented like this:
 
 ```python
 import socket
