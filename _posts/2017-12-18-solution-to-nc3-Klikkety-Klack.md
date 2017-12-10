@@ -4,7 +4,7 @@ title: "Solution to nc3 Klikkety Klack"
 author: capitol
 category: ctf
 ---
-![arachnid](/images/acab2.jpg)
+![acab](/images/acab2.jpg)
 
 ##### name:
 Klikkety Klack
