@@ -298,6 +298,30 @@ footer {
   filter: grayscale(100%);
 }
 
+.categories {
+  position: absolute;
+  top: 200px;
+  left: calc(50% + 400px);
+  width: 500px;
+}
+
+.categories > a {
+  display: block;
+}
+
+.categories > div {
+  display: none;
+}
+
+.categories > div > p {
+  padding-left: 10px;
+}
+
+.categories > div > p > small {
+  font-size: 75%;
+}
+
+
 // Settled on moving the import of syntax highlighting to the bottom of the CSS
 // ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
 @import "highlights";
