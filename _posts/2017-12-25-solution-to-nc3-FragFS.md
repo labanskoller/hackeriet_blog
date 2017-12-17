@@ -4,7 +4,7 @@ title: "Solution to nc3 FragFS"
 author: capitol
 category: ctf
 ---
-![acab](/images/acab2.jpg)
+![acab](/images/acab3.jpg)
 
 ##### name:
 FragFS
