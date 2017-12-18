@@ -63,98 +63,98 @@ for x in r[10940:23037].split(chr(0) + chr(255)):
 Running that gave us this filesystem content
 
 ```bash
-??? filsystem
-?   ??? docs
-?   ?   ??? stack_smashing.pdf
-?   ??? gits
-?   ?   ??? gef
-?   ?   ?   ??? binja_gef.py
-?   ?   ?   ??? docs
-?   ?   ?   ?   ??? api.md
-?   ?   ?   ?   ??? commands
-?   ?   ?   ?   ?   ??? aliases.md
-?   ?   ?   ?   ?   ??? aslr.md
-?   ?   ?   ?   ?   ??? assemble.md
-?   ?   ?   ?   ?   ??? canary.md
-?   ?   ?   ?   ?   ??? capstone-disassemble.md
-?   ?   ?   ?   ?   ??? checksec.md
-?   ?   ?   ?   ?   ??? config.md
-?   ?   ?   ?   ?   ??? context.md
-?   ?   ?   ?   ?   ??? dereference.md
-?   ?   ?   ?   ?   ??? edit-flags.md
-?   ?   ?   ?   ?   ??? elf-info.md
-?   ?   ?   ?   ?   ??? entry-break.md
-?   ?   ?   ?   ?   ??? eval.md
-?   ?   ?   ?   ?   ??? format-string-helper.md
-?   ?   ?   ?   ?   ??? gef-remote.md
-?   ?   ?   ?   ?   ??? heap-analysis-helper.md
-?   ?   ?   ?   ?   ??? heap.md
-?   ?   ?   ?   ?   ??? help.md
-?   ?   ?   ?   ?   ??? hexdump.md
-?   ?   ?   ?   ?   ??? hijack-fd.md
-?   ?   ?   ?   ?   ??? ida-interact.md
-?   ?   ?   ?   ?   ??? ksymaddr.md
-?   ?   ?   ?   ?   ??? memory.md
-?   ?   ?   ?   ?   ??? nop.md
-?   ?   ?   ?   ?   ??? patch.md
-?   ?   ?   ?   ?   ??? pattern.md
-?   ?   ?   ?   ?   ??? pcustom.md
-?   ?   ?   ?   ?   ??? process-search.md
-?   ?   ?   ?   ?   ??? process-status.md
-?   ?   ?   ?   ?   ??? registers.md
-?   ?   ?   ?   ?   ??? reset-cache.md
-?   ?   ?   ?   ?   ??? retdec.md
-?   ?   ?   ?   ?   ??? ropper.md
-?   ?   ?   ?   ?   ??? search-pattern.md
-?   ?   ?   ?   ?   ??? set-permission.md
-?   ?   ?   ?   ?   ??? shellcode.md
-?   ?   ?   ?   ?   ??? stub.md
-?   ?   ?   ?   ?   ??? theme.md
-?   ?   ?   ?   ?   ??? tmux-setup.md
-?   ?   ?   ?   ?   ??? trace-run.md
-?   ?   ?   ?   ?   ??? unicorn-emulate.md
-?   ?   ?   ?   ?   ??? vmmap.md
-?   ?   ?   ?   ?   ??? xfiles.md
-?   ?   ?   ?   ?   ??? xinfo.md
-?   ?   ?   ?   ?   ??? xor-memory.md
-?   ?   ?   ?   ??? commands.md
-?   ?   ?   ?   ??? config.md
-?   ?   ?   ?   ??? faq.md
-?   ?   ?   ?   ??? index.md
-?   ?   ?   ??? gef.py
-?   ?   ?   ??? gef.sh
-?   ?   ?   ??? ida_gef.py
-?   ?   ?   ??? LICENSE
-?   ?   ?   ??? mkdocs.yml
-?   ?   ?   ??? README.md
-?   ?   ?   ??? tests
-?   ?   ?       ??? helpers.py
-?   ?   ?       ??? pylintrc
-?   ?   ?       ??? test-runner.py
-?   ?   ??? iponmap
-?   ?       ??? index.js
-?   ?       ??? LICENSE
-?   ?       ??? package.json
-?   ?       ??? README.md
-?   ?       ??? screenshot.png
-?   ??? pics
-?   ?   ??? 20h-2012-s.png
-?   ?   ??? 20h.png
-?   ?   ??? dwm-20070930s.png
-?   ?   ??? dwm-20080717s.png
-?   ?   ??? dwm-20090620s.png
-?   ?   ??? dwm-20090709s.png
-?   ?   ??? dwm-20100318s.png
-?   ?   ??? dwm-20101101s.png
-?   ?   ??? dwm-20110720s.png
-?   ?   ??? dwm-20120806.png
-?   ?   ??? frign-2016-s.png
-?   ?   ??? hendry-s.png
-?   ?   ??? poster36.jpg
-?   ?   ??? putain-ouais-s.png
-?   ??? src
-?       ??? dwm-6.1.tar.gz
-?       ??? st-0.7.tar.gz
+â””â”€â”€ filsystem
+    â”œâ”€â”€ docs
+    â”‚Â Â  â””â”€â”€ stack_smashing.pdf
+    â”œâ”€â”€ gits
+    â”‚Â Â  â”œâ”€â”€ gef
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ binja_gef.py
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ docs
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ api.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ commands
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ aliases.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ aslr.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ assemble.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ canary.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ capstone-disassemble.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ checksec.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ config.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ context.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ dereference.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ edit-flags.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ elf-info.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ entry-break.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ eval.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ format-string-helper.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ gef-remote.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ heap-analysis-helper.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ heap.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ help.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ hexdump.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ hijack-fd.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ ida-interact.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ ksymaddr.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ memory.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ nop.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ patch.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ pattern.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ pcustom.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ process-search.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ process-status.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ registers.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ reset-cache.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ retdec.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ ropper.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ search-pattern.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ set-permission.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ shellcode.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ stub.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ theme.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ tmux-setup.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ trace-run.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ unicorn-emulate.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ vmmap.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ xfiles.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ xinfo.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”‚Â Â  â””â”€â”€ xor-memory.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ commands.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ config.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â”œâ”€â”€ faq.md
+    â”‚Â Â  â”‚Â Â  â”‚Â Â  â””â”€â”€ index.md
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ gef.py
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ gef.sh
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ ida_gef.py
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ LICENSE
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ mkdocs.yml
+    â”‚Â Â  â”‚Â Â  â”œâ”€â”€ README.md
+    â”‚Â Â  â”‚Â Â  â””â”€â”€ tests
+    â”‚Â Â  â”‚Â Â      â”œâ”€â”€ helpers.py
+    â”‚Â Â  â”‚Â Â      â”œâ”€â”€ pylintrc
+    â”‚Â Â  â”‚Â Â      â””â”€â”€ test-runner.py
+    â”‚Â Â  â””â”€â”€ iponmap
+    â”‚Â Â      â”œâ”€â”€ index.js
+    â”‚Â Â      â”œâ”€â”€ LICENSE
+    â”‚Â Â      â”œâ”€â”€ package.json
+    â”‚Â Â      â”œâ”€â”€ README.md
+    â”‚Â Â      â””â”€â”€ screenshot.png
+    â”œâ”€â”€ pics
+    â”‚Â Â  â”œâ”€â”€ 20h-2012-s.png
+    â”‚Â Â  â”œâ”€â”€ 20h.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20070930s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20080717s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20090620s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20090709s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20100318s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20101101s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20110720s.png
+    â”‚Â Â  â”œâ”€â”€ dwm-20120806.png
+    â”‚Â Â  â”œâ”€â”€ frign-2016-s.png
+    â”‚Â Â  â”œâ”€â”€ hendry-s.png
+    â”‚Â Â  â”œâ”€â”€ poster36.jpg
+    â”‚Â Â  â””â”€â”€ putain-ouais-s.png
+    â””â”€â”€ src
+        â”œâ”€â”€ dwm-6.1.tar.gz
+        â””â”€â”€ st-0.7.tar.gz
 ```
 
 Looking through the images in the pics catalog, we found the flag in the file dwm-20120806.png.
