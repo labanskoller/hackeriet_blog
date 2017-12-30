@@ -87,8 +87,8 @@ data = s.recv(4096)
 print(data)
 ```
 
-What's happening here is that we first connect and logs in, and get the token from our specially
-crafted role, we split the token in `c1` and `c2`, double `c2` and sends the token back and get
+What's happening here is that we first connect and log in, get the token from our specially
+crafted role then we split the token in `c1` and `c2`. Double `c2` and sends the token back and get
 the flag.
 
-Flag was 34C3_such_m4lleable_much_w0w
+Flag was `34C3_such_m4lleable_much_w0w`
