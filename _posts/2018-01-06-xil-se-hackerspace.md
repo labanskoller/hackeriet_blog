@@ -15,7 +15,7 @@ hackerspace.
 They have the most anonymous entrance I have ever seen, but after some guidance over the phone
 I managed to find it.
 
-They are located in an residential part of Malmö, but are close to both public transports and some
+They are located in a residential part of Malmö, but are close to both public transports and some
 restaurants.
 
 The space is located in a basement, and they are working on renovating it, but the places
