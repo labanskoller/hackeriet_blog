@@ -4,7 +4,7 @@ title: "Visiting Xil.se hackerspace in Malmö"
 author: capitol
 category: hackerspaces
 ---
-![logo](/images/xil.se/xil-logo.png)
+![logo](/images/xil.se/xil-logo2.png)
 
 Before [34c3](https://events.ccc.de/congress/2017/wiki/index.php/Main_Page) this year I visited
 Malmö for a couple of hours. And while I was there I managed to squeeze in a visit to the Xil.se
