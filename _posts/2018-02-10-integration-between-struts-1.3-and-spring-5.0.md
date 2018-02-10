@@ -4,7 +4,7 @@ title: "Announcing the integration library between Struts 1.3 and spring 5.0"
 author: capitol
 category: infrastructure
 ---
-![The swedish word for ](/images/autruche.jpg)
+![The swedish word for ostrich is struts](/images/ostrich.jpg)
 
 # Ageing java enterprise developers, look here!
 
