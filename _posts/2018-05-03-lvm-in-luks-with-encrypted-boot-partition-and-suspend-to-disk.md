@@ -5,6 +5,8 @@ author: sshow
 category: security
 ---
 
+![LVM in LUKS - lsblk and blkid terminal output](/images/luks-lvm-lsblk-blkid.png)
+
 ## Preface
 
 ### Motivation
