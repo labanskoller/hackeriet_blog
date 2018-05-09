@@ -64,7 +64,7 @@ procedure up until partitioning.
 
 The main storage device you want to use should be backed up before continuing.
 
-You must know wheter or not you're running a UEFI system before continuing.
+You must know whether or not you're running a UEFI system before continuing.
 You can determine this by running `efivar -l` from the Arch installation shell.
 
 ## Partitioning
@@ -219,7 +219,7 @@ Create filesystems on each logical volume
     # mkfs.ext4 /dev/mapper/Main-root
     # mkfs.ext4 /dev/mapper/Main-home
 
-Create the swap system
+Set up the swap area
 
     # mkswap /dev/mapper/Main-swap
 
@@ -250,7 +250,7 @@ the boot partition has been mounted.
 
 **BIOS:** Don't mount `nvme0n1p1`. GRUB will write to it later without mounting.
 
-Mount the home partition
+**BOTH:** Mount the home partition
 
     # mkdir /mnt/home
     # mount /dev/mapper/Main-home /mnt/home
@@ -267,10 +267,10 @@ my system is set up.
 
 ## Prepare for chroot
 
-Re-order the list of package mirrors pacman is using if desired. I am moving the
-mirrors closest to my location to the top of my list, then leaving everything
-else as it is. This file will be automatically be copied to the new system later
-on.
+Re-order the list of package mirrors pacman is using if desired. I am selecting the
+mirrors closest to my geographical location to the top of my list, then leaving
+everything else as it is. This file will be automatically be copied to the new
+system later on.
 
 If you're plugged in with ethernet but haven't configured an IP address yet, try
 get one through DHCP before continuing, as it expects a working internet connection.
@@ -321,8 +321,8 @@ new root is within the new system.
 Configure your keymap and font in `/etc/vconsole.conf` (optional).
 Depending on your password, setting the correct keymap may be crucial
 to be able to boot. **If you forgot to do this and you're reading here
-to try and save your ass**, there are kernel cmdline params that can set the
-keymap for you when booting. [TODO: add link]
+to try and save your ass**, there are [kernel boot params that can set the
+keymap](https://docs.oracle.com/cd/E52668_01/E54669/html/section_a43_3bk_q4.html).
 
     # example /etc/vconsole.conf
     KEYMAP=us
@@ -335,7 +335,8 @@ Open up `/etc/mkinitcpio.conf` and update the `HOOKS`. Here, too, the order matt
 I am using `keyboard` before `autodetect` to load all keyboard drivers.
 If an external keyboard is connected later on (e.g. by docking) and `keyboard` has been set
 *after* `autodetect`, it may not have a driver available and will be unusable for entering
-the luks passphrase. Note also the presence of `resume` which is required for suspend-to-disk to work.
+the luks passphrase. Make special note to the presence of `resume` which is required for
+suspend-to-disk to work.
 
 `decryption-keys` is a custom hook we will implement ourselves in order to
 add files to the root of the initramfs without keeping the files in our root
@@ -344,24 +345,25 @@ at `/etc/initcpio/install/decryption-keys`, and fill it with the below.
 ([Full version of this script](https://gist.github.com/stigok/7c8d3c872fae5573a870ecd86a4c896c) is in a gist.)
 
     #!/bin/bash
+    # This is /etc/initcpio/install/decryption-keys
     function build {
       for file in /etc/initcpio/keys/*; do
         add_file "$file" "/$(basename $file)" 0400
       done
     }
 
-Create a keyfile at `/etc/initcpio/keys/encrypted-boot.key` to automatically open the encrypted LVM partition
-after boot has been decrypted. Optionally source from `/dev/urandom` to avoid the possibility
+Create keyfiles inside `/etc/initcpio/keys/` to automatically open the encrypted LVM partition
+after boot has been manually decrypted. Optionally source from `/dev/urandom` to avoid the possibility
 of waiting *forever* for enough entropy. You have the opportunity to [know the difference][random urandom] if
 you don't already do.
 
-We are creating a keyfiles of `512 * 8` bytes (4096) each
+We are creating keyfiles of `512 * 8` bytes (4096) each
 
     # mkdir -p /etc/initcpio/keys
     # dd bs=512 count=8 iflag=fullblock if=/dev/random of=/etc/initcpio/keys/encrypted-boot.key
     # dd bs=512 count=8 iflag=fullblock if=/dev/random of=/etc/initcpio/keys/encrypted-lvm.key
 
-Set proper permissions and make it real hard to do accidentally something
+Set proper permissions and make it real hard to accidentally do something
 to these files
 
     # chmod 0000 /etc/initcpio/keys/*
@@ -376,14 +378,57 @@ Do the same for the *encrypted-lvm* partition
 
     # cryptsetup luksAddKey /dev/nvme0n1p3 /etc/initcpio/keys/encrypted-lvm.key
 
+Now that the LVM container has a keyfile attached, the passphrase used
+initially when creating the LUKS container can **optionally** be removed
+from the device.
+
+    # cryptsetup luksKillSlot /dev/nvme0n1p3 0 --keyfile /etc/initcpio/keys/encrypted-lvm.key
+
 Create the initial ramdisk environment and make sure it doesn't return any errors.
 Some warning may show, but errors should not occur.
 
     # mkinitcpio -p linux
 
-Now set strict permissions for the ramdisk images now that the decryption key is embedded
+Set strict permissions for the ramdisk images now that the decryption keys
+are embedded
 
     # chmod 0600 /boot/initramfs-linux*
+
+These permissions will be reset every time `mkinitcpio` is run. Typically it
+is automatically triggered after a package install or upgrade occurs that
+touches either `/boot/vmlinuz-linux` or `/usr/lib/initcpio/*`. To make sure
+permissions are properly set after every upgrade, create a post-transaction
+hook for pacman inside `/etc/pacman.d/hooks/99-initramfs-chmod.hook`:
+
+    [Trigger]
+    Type = File
+    Operation = Install
+    Operation = Upgrade
+    Target = boot/vmlinuz-linux
+    Target = usr/lib/initcpio/*
+
+    [Action]
+    Description = Setting proper permissions for linux initcpios...
+    When = PostTransaction
+    Exec = /usr/bin/chmod 0600 /boot/initramfs-linux.img /boot/initramfs-linux-fallback.img
+
+Make sure this works as intended by re-installing mkinitcpio
+
+    # pacman -S mkinitcpio`
+
+You should see a line in the output confirming the script ran
+
+    :: Running post-transaction hooks...
+    (1/5) Updating linux initcpios...
+    [ redacted ]
+    (2/5) Setting proper permissions for linux initcpios...
+    [ redacted ]
+
+And see that the permissions actually changed
+
+    # stat -c '%a %A %n' /boot/initramfs-linux*
+    400 -r-------- /boot/initramfs-linux-fallback.img
+    400 -r-------- /boot/initramfs-linux.img
 
 ## Create bootloader with GRUB
 
@@ -400,17 +445,16 @@ easier to do with `sed`
 
     # sed -i s/%uuid%/$(blkid -o value -s UUID /dev/nvme0n3)/ /etc/default/grub
 
-**If you are on a BIOS system:** register GRUB on the MBR. Otherwise, skip
-running the below command.
+**BIOS:** Register GRUB on the MBR:
 
     # grub-mkconfig -o /boot/grub/grub.cfg
 
-**If you are on a UEFI system:** verify that the ESP is mounted to `/boot/efi`
+**UEFI:** verify that the ESP is mounted to `/boot/efi`
 with `lsblk`, then install the bootloader to the ESP
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub --recheck
 
-**Both UEFI and BIOS:** Generate GRUB configuration.
+**Both:** Generate GRUB configuration.
 It's okay to get `WARNING: Failed to connect to lvmetad` while inside the chroot.
 
     # grub-mkconfig -o /boot/grub/grub.cfg
@@ -442,6 +486,7 @@ Links that are not already scattered within the document
 - https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Preparing_the_logical_volumes
 - https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#mkinitcpio
 - https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_.28GPT.29_specific_instructions
+- https://jlk.fjfi.cvut.cz/arch/manpages/man/alpm-hooks.5
 
 [Arch Wiki hibernation notes]: https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#About_swap_partition.2Ffile_size
 [random urandom]: https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom
