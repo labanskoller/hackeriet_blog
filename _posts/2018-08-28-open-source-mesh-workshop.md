@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Workshop 10-11 oktober: Build an open source mesh node"
+title: "Workshop 10-11 Oct: Build an open source mesh node"
 author: sgo
 category: talks
 ---
@@ -10,16 +10,19 @@ category: talks
 benhylau from tomesh.net will be in oslo, so we're going to do a few days of
 building mesh nodes that work without centralized architecture.
 
-https://github.com/benhylau/talks-and-workshops/blob/master/proposals/201810_nuug-hackeriet.md
+[More info: Oslo Mesh Week|https://github.com/benhylau/talks-and-workshops/blob/master/proposals/201810_nuug-hackeriet.md]
+
 
 # KEYWORDS:
 * cjdns, yggdrasil, ipv6
 * ipfs, secure scuttlebutt
-* wifi, 802.11s
-
+* rapsberry pi, wifi, 802.11s
 
 # What do I need to bring? 
-* Raspberry Pi (memory card + power adapter).
-- Laptop, or screen+keyboard.
-- (optional) External wifi dongle, for ad-hoc or 802.11s.
+* raspberry pi (+ power adapter).
+- laptop... (or screen+keyboard+cables)
 
+# Interesting..!
+ok. go to #oslohackerspace on Freenode.
+
+TODO: post meetup.com link
