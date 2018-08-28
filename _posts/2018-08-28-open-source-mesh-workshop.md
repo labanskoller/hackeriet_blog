@@ -10,7 +10,7 @@ category: talks
 benhylau from tomesh.net will be in oslo, so we're going to do a few days of
 building mesh nodes that work without centralized architecture.
 
-[More info: Oslo Mesh Week|https://github.com/benhylau/talks-and-workshops/blob/master/proposals/201810_nuug-hackeriet.md]
+[More info: Oslo Mesh Week](https://github.com/benhylau/talks-and-workshops/blob/master/proposals/201810_nuug-hackeriet.md)
 
 
 # KEYWORDS:
