@@ -4,7 +4,6 @@ title: "Talk 15 Sept: Functional Embedded Programming on the ESP8266"
 author: sgo
 category: talks
 ---
-![mesh-workshop](/images/mesh-workshop-Bf22V2LA.jpeg)
 
 # Talk: Functional Embedded Language
   (15 Sept. at Hackeriet, 19:00)
