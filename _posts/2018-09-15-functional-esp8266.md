@@ -4,9 +4,7 @@ title: "Talk 15 Sept: Functional Embedded Programming on the ESP8266"
 author: sgo
 category: talks
 ---
-
-# Talk: Functional Embedded Programming
-  (15 Sept. at Hackeriet, 19:00)
+15 Sept. at Hackeriet, 19:00
 
 Jonas S Karlsson[1] is a visiting hacker from Hong Kong, and he's been part of
 creating hackerspaces in San Fransisco, Sydney, Hong Kong, Shanghai and various
