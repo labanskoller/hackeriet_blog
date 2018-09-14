@@ -5,7 +5,7 @@ author: sgo
 category: talks
 ---
 
-# Talk: Functional Embedded Language
+# Talk: Functional Embedded Programming
   (15 Sept. at Hackeriet, 19:00)
 
 Jonas S Karlsson[1] is a visiting hacker from Hong Kong, and he's been part of
