@@ -5,7 +5,6 @@ author: sgo
 category: talks
 ---
 ![esp-alien](/images/esp-alien.png)
-15 Sept. at Hackeriet, 19:00 (30~ mins)
 
 Jonas S Karlsson[1] is a visiting hacker from Hong Kong, and he's been part of
 creating hackerspaces in San Fransisco, Sydney, Hong Kong, Shanghai and various
@@ -20,6 +19,6 @@ memory usage. Including a practical demo.
 
 Hope to see you there.
 
-[1] [http://yesco.org](http://yesco.org)
-[2] [https://github.com/yesco/esp-lisp](https://github.com/yesco/esp-lisp)
+* [1] [http://yesco.org](http://yesco.org)
+* [2] [https://github.com/yesco/esp-lisp](https://github.com/yesco/esp-lisp)
 
