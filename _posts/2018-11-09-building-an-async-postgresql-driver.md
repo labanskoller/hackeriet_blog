@@ -27,11 +27,11 @@ and then sits and waits until the database responds.
 
 If we instead could hand the query/queries of to the connection library and receive
 a future that the connection library completes when the database answers we can let
-the thread work on something else in the mean time. That way reducing the number
+the thread work on something else in the meantime. That way reducing the number
 of threads needed, thus minimizing memory overhead and context switching.
 
 The [pgAdba](https://github.com/pgjdbc/pgadba) library implements a useful subset of
-this proposed api for postgresql, the plan is to implement the whole api, but it's
+this proposed API for postgresql, the plan is to implement the whole api, but it's
 better to release early and often than waiting for perfection.
 
 # Architectural changes from JDBC
@@ -42,10 +42,10 @@ A useful mental model for how the programming against the api work are two paral
 threads, the one the user controls build up one or more queries, called 
 [Operations](https://github.com/pgjdbc/pgadba/blob/master/src/main/java/jdk/incubator/sql2/Operation.java),
 fills them with parameter data and everything else that's needed and hands them over
-to the other thread. It gets a future in return, in the form if a [Submission](https://github.com/pgjdbc/pgadba/blob/master/src/main/java/jdk/incubator/sql2/Submission.java).
+to the other thread. It gets a future in return, in the form of a [Submission](https://github.com/pgjdbc/pgadba/blob/master/src/main/java/jdk/incubator/sql2/Submission.java).
 
-The other thread is responsible for the network communication, and send the query to the
-database, on return it completes the future, either normally or in case of an error 
+The other thread is responsible for the network communication, and sends the query to the
+database. On return it completes the future, either normally or in case of an error 
 exceptionally.
 
 ## Queries are not parsed by the connection library
@@ -54,9 +54,9 @@ That both the connection library and the database should parse the query is a wa
 effort, therefor the pgAdba library never parses the sql query string and instead sends
 it as-is to the database server.
 
-This removes the need for complicated parsing and escaping lagic in the driver, and
-makes debugging problems with the query simpler, as you can know what you as a 
-developer sees and what the server sees are the same.
+This removes the need for complicated parsing and escaping logic in the driver, and
+makes debugging problems with the query simpler, as you can know that what you as a 
+developer see and what the server see are the same.
 
 ## Minimal amount of state inside the library
 
@@ -71,7 +71,7 @@ By using the extended query protocol in the postgresql wire format we can ensure
 we get one answer for every query we send. This enables us to start sending query number
 two before we have received the answer to the first query.
 
-This really helps with throughput, specially in situations where there is increased
+This really helps with throughput, especially in situations where there is increased
 latency between the database server and the application server.
 
 ## Use of `java.time` date classes
@@ -79,9 +79,16 @@ latency between the database server and the application server.
 The new time classes that arrived in java 8 are a huge improvement over `java.util.Date`
 and they are first class citizens in this library.
 
-# what remains
+# What remains
 
-A lot, suggestions, bug reports and pull requests are very welcome.
+A lot! Suggestions, bug reports and pull requests are very welcome.
+
+The version number includes the -ALPHA denomination, this has two meanings. The first is that the
+API published under the  `jdk.incubator.sql2` namespace isn't stable and will change in future 
+releases. The other is that the driver itself isn't tested under production workloads and there
+will be bugs.
+
+But regardless of that it's possible to experiment and get a feeling for how the proposed API works.
 
 # How to test it out
 
