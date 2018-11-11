@@ -2,7 +2,7 @@
 layout: post
 title: "Release of pgAdba, an asynchronous connection library for PostgreSQL"
 author: capitol
-category: member-project
+category: infrastructure
 ---
 ![coffee-elephant](/images/coffee-elephant.jpg)
 
