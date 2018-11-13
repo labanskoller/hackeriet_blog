@@ -5,8 +5,6 @@ author: capitol
 category: postgresql
 ---
 
-# Performance testing the Asynchronous PostgreSQL library pgAdba
-
 We have done some performance testing between the pgjdbc driver and the pgAdba driver
 for PostgreSQL.
 
