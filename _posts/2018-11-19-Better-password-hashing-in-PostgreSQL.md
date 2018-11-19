@@ -11,7 +11,7 @@ Many connections to PostgreSQL servers are not protected by TLS and for those it
 important that the password isn't sent as clear text over the network.
 
 PostgreSQL have supported MD5 hashing with salt for a long time, and as we all know
-MD5 is very broken with todays standards. Not only is MD5 weak, the login sequence
+MD5 is considered very broken by todays standards. Not only is MD5 weak, the login sequence
 only contains 32 bits of new entropy per connection, so if you can listen to
 multiple connection attempts then you can easily perform a reply attack on the md5
 packet.
@@ -178,7 +178,8 @@ The packet looks like this as a hex dump:
 Here the client have done the actual work of hashing the password and sending
 the proof of that in attribute `p`.
 
-`c` is channel binding data, this isn't used by the java connection code yet, so
+`c` is channel binding data. This isn't used by the 
+[pgAdba](https://github.com/pgjdbc/pgadba) connection code yet, so
 we will come back to this in the future.
 
 The packet looks like this as a hex dump:
