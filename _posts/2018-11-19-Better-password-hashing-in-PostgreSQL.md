@@ -13,7 +13,7 @@ important that the password isn't sent as clear text over the network.
 PostgreSQL have supported MD5 hashing with salt for a long time, and as we all know
 MD5 is considered very broken by todays standards. Not only is MD5 weak, the login sequence
 only contains 32 bits of new entropy per connection, so if you can listen to
-multiple connection attempts then you can easily perform a reply attack on the md5
+multiple connection attempts then you can easily perform a replay attack on the md5
 packet.
 
 Lets look on how a MD5 based login sequence looks.
