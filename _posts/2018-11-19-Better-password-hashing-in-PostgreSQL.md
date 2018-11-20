@@ -10,13 +10,13 @@ category: postgresql
 Many connections to PostgreSQL servers are not protected by TLS and for those it's
 important that the password isn't sent as clear text over the network.
 
-PostgreSQL have supported MD5 hashing with salt for a long time, and as we all know
-MD5 is considered very broken by todays standards. Not only is MD5 weak, the login sequence
+PostgreSQL has supported MD5 hashing with salt for a long time, and as we all know
+MD5 is considered very broken by today's standards. Not only is MD5 weak, the login sequence
 only contains 32 bits of new entropy per connection, so if you can listen to
-multiple connection attempts then you can easily perform a replay attack on the md5
+multiple connection attempts then you can easily perform a replay attack on the MD5
 packet.
 
-Lets look on how a MD5 based login sequence looks.
+Let's look on how an MD5 based login sequence looks.
 
 #### Client sends a startup message
 
@@ -25,13 +25,13 @@ Lets look on how a MD5 based login sequence looks.
 | int32  | int32    | str        | str         |
 | 88     | 3        | user       | test        |
 
-First element is just a standard length, the second the protocol version that the
-client want to use, PostgreSQL has been on version 3 since version 7.4. One
+The first element is just a standard length, the second is the protocol version that the
+client wants to use. PostgreSQL has been on protocol version 3 since version 7.4. One
 interesting thing about the protocol field is that it's reused when trying to start
-a TLS connection, the value 80877103 means that a TLS connection will be initiated
+a TLS connection. The value 80877103 means that a TLS connection will be initiated
 instead.
 
-After that a number of parameter name/value pairs are sent, the most important
+After that a number of parameter name/value pairs are sent. The most important
 for this topic is the user one, that sets the username.
 
 The packet looks like this as a hex dump:
@@ -51,7 +51,7 @@ The packet looks like this as a hex dump:
 |byte        | int32  | int32  | various, int32 with md5 |
 |'R'         | 12     | 5      | 0xfce5c980              |
 
-What the server responds with is controlled by the pg_hba.conf file, in this case
+What the server responds with is controlled by the pg\_hba.conf file. In this case
 it has a line that looks like this that instructs it to use MD5:
 
 ```text
@@ -86,12 +86,12 @@ The packet looks like this as a hex dump:
 ## Improved security with SCRAM-SHA-256
 
 In order to improve the situation the hashing system SCRAM-SHA-256 was introduced, 
-as defined in [rfc 5802](https://tools.ietf.org/html/rfc5802) and 
-[rfc 7677](https://tools.ietf.org/html/rfc7677).
+as defined in [RFC 5802](https://tools.ietf.org/html/rfc5802) and 
+[RFC 7677](https://tools.ietf.org/html/rfc7677).
 
 It's a more complicated protocol, but it's significantly more secure.
 
-Lets go over the packet exchange of here also.
+Let's go over the packet exchange of that also.
 
 #### Client sends a startup message
 
@@ -104,11 +104,11 @@ Same as above, not repeated.
 |byte        | int32  | int32  | various, str with SASL  |
 |'R'         | 23     | 10     | SCRAM-SHA-25            |
 
-These authentication system uses the SASL packets, types SASL (10), SASL_CONTINUE 
-(11) and SASL_FINAL (12).
+This authentication system uses the SASL packets, types SASL (10), SASL\_CONTINUE 
+(11) and SASL\_FINAL (12).
 
-The type specific data is a list of mechanism which the client can choose one of,
-in this case it only has one field.
+The type specific data is a list of mechanisms which the client can choose one of,
+in this case it has only one field.
 
 The packet looks like this as a hex dump:
 ```hexdump
@@ -116,19 +116,19 @@ The packet looks like this as a hex dump:
 0010   48 41 2d 32 35 36 00 00
 ```
 
-#### client responds with the first password message
+#### Client responds with the first password message
 
 | type marker| length | mechanism     | length | parameter string                 |
 |------------|--------|---------------|--------|----------------------------------|
 |byte        | int32  | str           | int32  | str                              |
 |'p'         | 54     | SCRAM-SHA-256 | 32     | n,,n=,r=/z+giZiTxAH7r8sNAeHr7cvp |
 
-When sending a password packet back as part of a SASL exchange it as a few more 
-fields. Most notable is the parameter string, which content if determined by
-[rfc 5802](https://tools.ietf.org/html/rfc5802).
+When sending a password packet back as part of a SASL exchange it has a few more 
+fields. Most notable is the parameter string, whose content is determined by
+[RFC 5802](https://tools.ietf.org/html/rfc5802).
 
 Notable is that this message also contains a username in the attribute `n`,
-but the server doesn't use that so we leave that blank.
+but the server doesn't use that so we leave it blank.
 
 The attribute `r` is the client specified nounce, in other words the entropy that
 the client supplies.
@@ -149,12 +149,12 @@ The packet looks like this as a hex dump:
 |'R'         | 92     | 11     | r=/z+giZiTxAH7r8sNAeHr7cvpqV3uo7G/bJBIJO3pjVM7t3ng,s=4UV68bIkC8f9/X8xH7aPhg==,i=4096 |
 
 The server asks us to perform 4096 iterations of the hashing in attribute `i`,
-the rfc specifies that the complete exchange without network lag should take at 
+the RFC specifies that the complete exchange without network lag should take at 
 least 0.1 seconds. So this value will likely increase with future versions of 
 PostgreSQL.
 
-In attribute `r` the server have taken the entropy that the client supplied and
-added it't own.
+In attribute `r` the server has taken the entropy that the client supplied and
+added its own.
 
 `s` is a server generated salt for the user.
 
@@ -175,7 +175,7 @@ The packet looks like this as a hex dump:
 |byte        | int32  | str                                                                                                      |
 |'p'         | 108    | c=biws,r=/z+giZiTxAH7r8sNAeHr7cvpqV3uo7G/bJBIJO3pjVM7t3ng,p=AFpSYH/K/8bux1mRPUwxTe8lBuIPEyhi/7UFPQpSr4A= |
 
-Here the client have done the actual work of hashing the password and sending
+Here the client has done the actual work of hashing the password and sending
 the proof of that in attribute `p`.
 
 `c` is channel binding data. This isn't used by the 
@@ -193,7 +193,7 @@ The packet looks like this as a hex dump:
 0060   69 2f 37 55 46 50 51 70 53 72 34 41 3d
 ```
 
-#### Server end the authentication exchange with a SASL FINISH message
+#### Server ends the authentication exchange with a SASL FINISH message
 
 | type marker| length | type   | type specific data                             |
 |------------|--------|--------|------------------------------------------------|
