@@ -12,7 +12,7 @@ category: meta
 And we are sad, but we are also very happy that we got to experience all the fantastic
 things that happened, and got to listen to so many high quality talks.
 
-To help people find out what the best talks where so you can watch them from home
+To help people find out what the best talks were so you can watch them from home
 we have compiled a curated list. By having our members rang what they watched and
 then apply the Schulze voting algorithm.
 
