@@ -58,8 +58,7 @@ solver, but before we can do that we need to get the data out of the pcap file i
 structured form.
 
 We wrote the following program to get the data out of the pcap file, and also
-generate a sage program that solves the equation system in the Z-ring 
-340282366920938463463374607431768211297. 
+generate a sage program that solves the equation system in Z over 340282366920938463463374607431768211297. 
 
 ```python
 from collections import defaultdict
