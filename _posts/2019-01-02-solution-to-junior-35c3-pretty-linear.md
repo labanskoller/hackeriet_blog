@@ -1,28 +1,28 @@
 ---
 layout: post
-title: "Solution to junior 35c3 ctf Pretty linear"
+title: "Solution to 35C3 Junior CTF challenge pretty\_linear"
 author: capitol
 category: ctf
 ---
 
 ![linear-subspaces](/images/1280px-Linear_subspaces_with_shading.svg.png)
 
-##### name:
-pretty linear
+##### Name:
+pretty\_linear
 
-##### category:
+##### Category:
 crypto
 
-##### points:
+##### Points:
 500 (variable)
 
 #### Writeup
 
-We where given a [pcap file]({% link /assets/pretty-linear/c5c0d261333729feb801834d5168ba4c-surveillance.pcap %}) 
-full of recorded network traffic, and the source code for 
+We were given a [PCAP file]({% link /assets/pretty-linear/c5c0d261333729feb801834d5168ba4c-surveillance.pcap %})
+full of recorded network traffic, and the source code for
 [the server]({% link /assets/pretty-linear/ad8d07e798dd88b3d4950498e3a6b4d6-server.py %}).
 
-The server code that generates the network traffic looks like this.
+The server code that generated the network traffic looks like this:
 
 ```python
     print(' '.join(map(str, challenge)))
@@ -36,29 +36,29 @@ The server code that generates the network traffic looks like this.
 
 `challenge` and `key` are both arrays consisting of 40 integers that are 16 bytes in
 length and the response is another 16 byte integer. `challenge` is sent in plain text
-from the server to the client, and therefor known to us, `key` is a shared secret
-between the client and the server and never sent over the network, we need to
-calculate that in order to crack the challenge. `response` is also sent over the
+from the server to the client, and therefor known to us. `key` is a shared secret
+between the client and the server and never sent over the network. We need to
+calculate that key in order to crack the challenge. `response` is also sent over the
 network, from the client to the server.
 
-Line three have the algorithm that is used to ensure that the client and the server
-both knows the same `key`. We can expand that to a more readable form like this:
+Line three has the algorithm that is used to ensure that the client and the server
+both know the same `key`. We can expand that to a more readable form like this:
 
 ```python
 response = c[0] * k[0] % p + c[1] * k[1] % p + ... + c[39] * k[39] % p;
 ```
 
-Both `response` and the `c` variables are known and `p` is hardcoded to
+Both variables `response` and `c` are known and `p` is hard coded to
 340282366920938463463374607431768211297 in the source code.
 
-Looking into the pcap file we see that we have 40 of these interactions, and 
-combining those gives us an equation system with 40 equations, each of them 
+Looking into the PCAP file we see that we have 40 of these interactions.
+Combining those gives us an equation system with 40 equations, each of them
 containing 40 variables. This is a problem that can be solved by a linear equation
-solver, but before we can do that we need to get the data out of the pcap file in a
+solver, but before we can do that we need to get the data out of the PCAP file in a
 structured form.
 
-We wrote the following program to get the data out of the pcap file, and also
-generate a sage program that solves the equation system in Z over 340282366920938463463374607431768211297. 
+We wrote the following program to get the data out of the PCAP file, and also
+generate a sage program that solves the equation system in Z over 340282366920938463463374607431768211297.
 
 ```python
 from collections import defaultdict
@@ -136,4 +136,4 @@ cipher = AES.new(
 print(cipher.decrypt(binascii.unhexlify(chipher)).decode('utf-8'))
 ```
 
-The flag was: 35C3_G4uss_w0uld_b3_so_pr0ud_of_y0u_r1ght_n0w
+The flag was: 35C3\_G4uss\_w0uld\_b3\_so\_pr0ud\_of\_y0u\_r1ght\_n0w
