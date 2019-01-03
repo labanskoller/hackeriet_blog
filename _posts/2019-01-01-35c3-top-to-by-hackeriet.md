@@ -1,23 +1,23 @@
 ---
 layout: post
-title: "Hackeriets selection of top talks from 35c3"
+title: "Hackeriet's selection of top talks from 35C3"
 author: capitol
 category: meta
 ---
 
-![35c3](/images/35C3Logo_pur.svg)
+![35C3](/images/35C3Logo_pur.svg)
 
-# 35c3 is over
+# 35C3 is over
 
 And we are sad, but we are also very happy that we got to experience all the fantastic
 things that happened, and got to listen to so many high quality talks.
 
-To help people find out what the best talks were so you can watch them from home
-we have compiled a curated list. By having our members rang what they watched and
+To help people find out what the best talks were so you can watch them from home,
+we have compiled a curated list by having our members rang what they watched and
 then apply the Schulze voting algorithm.
 
 
-Here is the list, all entries link to the video streams over at [media.ccc.de](https://media.ccc.de/).
+Here is the list. All entries link to the video streams over at [media.ccc.de](https://media.ccc.de/).
 
 0. [What The Fax?!](https://media.ccc.de/v/35c3-9462-what_the_fax)
 1. [The Rocky Road to TLS 1.3 and better Internet Encryption](https://media.ccc.de/v/35c3-9607-the_rocky_road_to_tls_1_3_and_better_internet_encryption)
