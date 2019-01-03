@@ -1,24 +1,24 @@
 ---
 layout: post
-title: "Solution to junior 35c3 ctf Decrypted"
+title: "Solution to 35C3 Junior CTF challenge Decrypted"
 author: capitol
 category: ctf
 ---
 
-![cube_root](/images/cube_root.jpg)
+![cube\_root](/images/cube_root.jpg)
 
-##### name:
+##### Name:
 Decrypted
 
-##### category:
+##### Category:
 crypto
 
-##### points:
+##### Points:
 500 (variable)
 
 #### Writeup
 
-This challenge was a part of a group of 12 challenges that all shared the same large 
+This challenge was a part of a group of 12 challenges that all shared the same large
 code base.
 
 The function that we needed to crack in order to get the flag was this one:
@@ -57,14 +57,14 @@ def encryptiontest():
             var message = '{}'
             return encrypt(message, key)
         end
-            
+
         alert(get_cypher(key))
         """.format(DECRYPTED)
         encrypted = runwee(wee)
     return jsonify({"enc": encrypted})
 ```
 
-And calling that function gave us this chiphertext in form of a large number.
+And calling that function gave us this ciphertext in form of a large number:
 
 ```text
 650802889626540392576254226480769958677174063746262298961949406725587937603370598056914641680440287141866554424868358513810586735136666559905873773370795301824775736764582520414393058823900835653671443326759384479590622850329114068561701339992264327486363426970702107667234446480134526246514585103292832378240690398119481568246551291749012927947948046185733533974179911092159848587
@@ -73,9 +73,9 @@ And calling that function gave us this chiphertext in form of a large number.
 The encryption code is a simple school book example on how to implement RSA with
 a classical mistake of not using any padding.
 
-The public key is also quite big, 2466 decimal digits, or 8192 bits. And the encrypted
-flag is not that big 381 decimal digits, or 1266 bits. This makes the modulus part
-of RSA not kick in, and the RSA algorithm is reduced from
+The public key is also quite big, 2466 decimal digits, or 8192 bits. The encrypted
+flag is not that big however: 381 decimal digits, or 1266 bits. This makes the modulus part
+of RSA to not kick in, and the RSA algorithm is reduced from
 
 ```text
 y = x^e mod n
@@ -86,13 +86,13 @@ to
 y = x^e
 ```
 
-And this is trivially solved, by taking the cube root of the number since the 
+And this is trivially solved by taking the cube root of the number since the
 exponent, `key.e`, is 3.
 
 We wrote this sage program to solve it:
 
 ```python
-from sage.crypto.util import bin_to_ascii,ascii_to_bin
+from sage.crypto.util import bin_to_ascii, ascii_to_bin
 
 a = Integer(650802889626540392576254226480769958677174063746262298961949406725587937603370598056914641680440287141866554424868358513810586735136666559905873773370795301824775736764582520414393058823900835653671443326759384479590622850329114068561701339992264327486363426970702107667234446480134526246514585103292832378240690398119481568246551291749012927947948046185733533974179911092159848587)
 p = pow(a, 1/3)
@@ -101,4 +101,4 @@ pb = "00" + pa;
 print(bin_to_ascii(pb))
 ```
 
-The flag was: 35C3_OUR_CRYPTO_IS_AS_LEGIT_AS_MOST_CRYPTO_CURRENCIES
+The flag was: 35C3\_OUR\_CRYPTO\_IS\_AS\_LEGIT\_AS\_MOST\_CRYPTO\_CURRENCIES
