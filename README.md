@@ -6,5 +6,3 @@
 4. Legg den i _posts-katalogen med år-mnd-dag-URL-bit.md som filnavn
 5. Post link på Facebook, den går automatisk til Twitter
 6. Gratulerer du har nå blogga!
-
-hooktest
