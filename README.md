@@ -7,3 +7,4 @@
 5. Post link på Facebook, den går automatisk til Twitter
 6. Gratulerer du har nå blogga!
 
+hooktest
