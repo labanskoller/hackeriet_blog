@@ -1,58 +1,58 @@
 ---
 layout: post
-title: "Math functions in AES and Sage"
+title: "Math Functions in AES and Sage"
 author: capitol
 category: crypto
 ---
 
 ![sunset](/images/sunset.jpg)
 
-AES, also known as rijndael, perform it's operations inside a galois field of 2<sup>8</sup>.
-It's a construct where multiplication, division, addition, and subtraction have new
-meaning and implementations. We will look at how these work and how sage have
+AES, also known as Rijndael, performs its operations in a Galois field of 2<sup>8</sup>.
+It's a construct where multiplication, division, addition and subtraction have new
+meanings and implementations. We will look at how these work and how Sage have
 made our life easier by implementing them for us.
 
-One way to view the numbers inside the field is that they represent polynomials, 
+One way to view the numbers in the field is that they represent polynomials.
 0x53 is 01010011 in binary, or the polynomial x<sup>6</sup> + x<sup>4</sup> + x + 1.
 
 ## Addition and Subtraction
 
-Since all operations inside the field are reduced with modulo 2, addition and 
-substration becomes XOR. Easiest demonstrated with a few examples borrowed from
-wikipedia.
+Since all operations in the field are reduced with modulo 2, addition and
+subtraction become XOR. This is easiest demonstrated with a few examples borrowed from
+Wikipedia.
 
 
-|p1  | p2  | p1 + p2 (normal algebra)  | p1 + p2 in GF(2n)  |
-|----|-----|---------------------------|--------------------|
-|x<sup>3</sup> + x + 1 |	x<sup>3</sup> + x<sup>2</sup> |	2x<sup>3</sup> + x<sup>2</sup> + x + 1 |	x<sup>2</sup> + x + 1 |
-|x<sup>4</sup> + x<sup>2</sup> | x<sup>6</sup> + x<sup>2</sup> | x<sup>6</sup> + x<sup>4</sup> + 2x<sup>2</sup> | x<sup>6</sup> + x<sup>4</sup> | 
-|x + 1 | x<sup>2</sup> + 1 | x<sup>2</sup> + x + 2 | x<sup>2</sup> + x | 
-|x<sup>3</sup> + x | x<sup>2</sup> + 1 | x<sup>3</sup> + x<sup>2</sup> + x + 1 | x<sup>3</sup> + x<sup>2</sup> + x + 1 | 
-|x<sup>2</sup> + x | x<sup>2</sup> + x | 2x<sup>2</sup> + 2x | 0 |  
+| p1                            | p2                            | p1 + p2 (normal algebra)                       | p1 + p2 in GF(2<sup>n</sup>)          |
+| ------------------------------|-------------------------------|------------------------------------------------|---------------------------------------|
+| x<sup>3</sup> + x + 1         | x<sup>3</sup> + x<sup>2</sup> | 2x<sup>3</sup> + x<sup>2</sup> + x + 1         | x<sup>2</sup> + x + 1                 |
+| x<sup>4</sup> + x<sup>2</sup> | x<sup>6</sup> + x<sup>2</sup> | x<sup>6</sup> + x<sup>4</sup> + 2x<sup>2</sup> | x<sup>6</sup> + x<sup>4</sup>         |
+| x + 1                         | x<sup>2</sup> + 1             | x<sup>2</sup> + x + 2                          | x<sup>2</sup> + x                     |
+| x<sup>3</sup> + x             | x<sup>2</sup> + 1             | x<sup>3</sup> + x<sup>2</sup> + x + 1          | x<sup>3</sup> + x<sup>2</sup> + x + 1 |
+| x<sup>2</sup> + x             | x<sup>2</sup> + x             | 2x<sup>2</sup> + 2x                            | 0                                     |
 
-Or seen in sage:
+Or seen in Sage:
 
 ```python
 R.<x> = PolynomialRing(GF(2^8), 'x')
-S.<a> = QuotientRing(R, R.ideal(x^8+x^4+x^3+x+1))
+S.<a> = QuotientRing(R, R.ideal(x^8 + x^4 + x^3 + x + 1))
 
-z3=a^3+a+1
-z4=a^3+a^2
-print(z3+z4)
+z3 = a^3 + a + 1
+z4 = a^3 + a^2
+print(z3 + z4)
 ```
 
 which prints `a^2 + a + 1`.
 
 ## Multiplication
 
-This gets a lot more complicated, if we continue to look at the numbers as
-polynomials, then all multiplication inside GF(2<sup>8</sup>) happens modulo
+This gets a lot more complicated. If we continue to look at the numbers as
+polynomials, then all multiplication in GF(2<sup>8</sup>) happens modulo
  x<sup>8</sup> + x<sup>4</sup> + x<sup>3</sup> + x + 1.
- 
-The reason that it's not a straight modulo operation is that if it was then the
+
+The reason that it's not a straight modulo operation is that if it were then the
 multiplication of two numbers could result in 0, which wouldn't work.
 
-An example would be `0x53 * 0xCA = 0x01`, due to:
+An example is `0x53 * 0xCA = 0x01`, since:
 
 (x<sup>6</sup> + x<sup>4</sup> + x + 1)(x<sup>7</sup> + x<sup>6</sup> + x<sup>3</sup> + x)
 
@@ -61,54 +61,54 @@ An example would be `0x53 * 0xCA = 0x01`, due to:
 = x<sup>13</sup> + x<sup>12</sup> + x<sup>11</sup> + x<sup>10</sup> + x<sup>9</sup> + x<sup>8</sup> + x<sup>6</sup> + x<sup>5</sup> + x<sup>4</sup> + x<sup>3</sup> + x<sup>2</sup> + x
 
 And x<sup>13</sup> + x<sup>12</sup> + x<sup>11</sup> + x<sup>10</sup> + x<sup>9</sup> + x<sup>8</sup> + x<sup>6</sup> + x<sup>5</sup> + x<sup>4</sup> + x<sup>3</sup> + x<sup>2</sup> + x
-modulo x<sup>8</sup> + x<sup>4</sup> + x<sup>3</sup> + x + 1 is `01`.
+modulo x<sup>8</sup> + x<sup>4</sup> + x<sup>3</sup> + x + 1 is 1.
 
-We can also view this in sage:
+We can also see this in Sage:
 
 ```python
 R.<x> = PolynomialRing(GF(2^8), 'x')
-S.<a> = QuotientRing(R, R.ideal(x^8+x^4+x^3+x+1))
+S.<a> = QuotientRing(R, R.ideal(x^8 + x^4 + x^3 + x + 1))
 
 z1 = a^6 + a^4 + a + 1
 z2 = a^7 + a^6 + a^3 + a
-print(z1*z2)
+print(z1 * z2)
 ```
 
 which prints `1`.
 
-## Exponents
+## Exponentiation
 
-Generally easy, since an exponent is just a repeated multiplication, but some 
-of the numbers in AES have an interesting property. When you multiply those numbers 
-with itself they traverse all 255 non-zero numbers in the field. They are called
-generators, and here is a list of them:
+Generally easy, since exponentiation is just repeated multiplication, but some
+of the numbers in AES have interesting properties. When you multiply those numbers
+with themselves they traverse all 255 non-zero numbers in the field. They are called
+*generators* and here is a list of them:
 
 ```text
-0x03 0x05 0x06 0x09 0x0b 0x0e 0x11 0x12 0x13 0x14 0x17 0x18 0x19 0x1a 0x1c 0x1e 
-0x1f 0x21 0x22 0x23 0x27 0x28 0x2a 0x2c 0x30 0x31 0x3c 0x3e 0x3f 0x41 0x45 0x46 
-0x47 0x48 0x49 0x4b 0x4c 0x4e 0x4f 0x52 0x54 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5f 
-0x64 0x65 0x68 0x69 0x6d 0x6e 0x70 0x71 0x76 0x77 0x79 0x7a 0x7b 0x7e 0x81 0x84 
-0x86 0x87 0x88 0x8a 0x8e 0x8f 0x90 0x93 0x95 0x96 0x98 0x99 0x9b 0x9d 0xa0 0xa4 
-0xa5 0xa6 0xa7 0xa9 0xaa 0xac 0xad 0xb2 0xb4 0xb7 0xb8 0xb9 0xba 0xbe 0xbf 0xc0 
-0xc1 0xc4 0xc8 0xc9 0xce 0xcf 0xd0 0xd6 0xd7 0xda 0xdc 0xdd 0xde 0xe2 0xe3 0xe5 
+0x03 0x05 0x06 0x09 0x0b 0x0e 0x11 0x12 0x13 0x14 0x17 0x18 0x19 0x1a 0x1c 0x1e
+0x1f 0x21 0x22 0x23 0x27 0x28 0x2a 0x2c 0x30 0x31 0x3c 0x3e 0x3f 0x41 0x45 0x46
+0x47 0x48 0x49 0x4b 0x4c 0x4e 0x4f 0x52 0x54 0x56 0x57 0x58 0x59 0x5a 0x5b 0x5f
+0x64 0x65 0x68 0x69 0x6d 0x6e 0x70 0x71 0x76 0x77 0x79 0x7a 0x7b 0x7e 0x81 0x84
+0x86 0x87 0x88 0x8a 0x8e 0x8f 0x90 0x93 0x95 0x96 0x98 0x99 0x9b 0x9d 0xa0 0xa4
+0xa5 0xa6 0xa7 0xa9 0xaa 0xac 0xad 0xb2 0xb4 0xb7 0xb8 0xb9 0xba 0xbe 0xbf 0xc0
+0xc1 0xc4 0xc8 0xc9 0xce 0xcf 0xd0 0xd6 0xd7 0xda 0xdc 0xdd 0xde 0xe2 0xe3 0xe5
 0xe6 0xe7 0xe9 0xea 0xeb 0xee 0xf0 0xf1 0xf4 0xf5 0xf6 0xf8 0xfb 0xfd 0xfe 0xff
 ```
 
-We could write a small sage program to print a complete loop for the generator 3: 
+We could write a small Sage program to print a complete loop for the generator 3:
 
 ```python
 R.<x> = PolynomialRing(GF(2^8), 'x')
-S.<a> = QuotientRing(R, R.ideal(x^8+x^4+x^3+x+1))
+S.<a> = QuotientRing(R, R.ideal(x^8 + x^4 + x^3 + x + 1))
 
 z5 = a^0
 z6 = a + 1
 
 for i in range(16):
-    s =	""
+    s = ""
     for j in range(16):
         X1_bitvec = ''.join(map(str, z5.list()));
         X1 = Integer(str(X1_bitvec)[::-1], base=2);
-        s += "0x%02X " % X1
+        s += "0x%02X " % (X1)
         z5 *= z6
     print(s)
 ```
@@ -136,13 +136,13 @@ which prints this:
 
 ## Logarithms
 
-When we have this table we can answer the question `How many times must I 
-multiply 3 with itself to get number x` by turning it inside out
+When we have this table we can answer the question *How many times must I
+multiply 3 with itself to get number x?* by turning it inside out:
 
 ```python
 G = GF(2^8)
 R.<x> = PolynomialRing(G, 'x')
-S.<a> = QuotientRing(R, R.ideal(x^8+x^4+x^3+x+1))
+S.<a> = QuotientRing(R, R.ideal(x^8 + x^4 + x^3 + x + 1))
 
 z5 = a^0
 z6 = a + 1
@@ -159,10 +159,10 @@ for i in range(16):
 for i in range(16):
     s = ""
     for j in range(16):
-    	if log_array[i * 16 + j] == None:
+        if log_array[i * 16 + j] == None:
             s += "none "
         else:
-    	    s += "0x%02X " % log_array[i * 16 + j]
+            s += "0x%02X " % (log_array[i * 16 + j])
     print(s)
 
 ```
@@ -188,25 +188,25 @@ none 0xFF 0x19 0x01 0x32 0x02 0x1A 0xC6 0x4B 0xC7 0x1B 0x68 0x33 0xEE 0xDF 0x03
 0x67 0x4A 0xED 0xDE 0xC5 0x31 0xFE 0x18 0x0D 0x63 0x8C 0x80 0xC0 0xF7 0x70 0x07 
 ```
 
-One can notice that the first value is none, that is because multiplying two 
+One can notice that the first value is `none`. That is because multiplying two
 none-zero numbers never results in zero.
 
 ## Division
 
 We can use the logarithm table to perform division, because if
 a = g<sup>x</sup> and b = g<sup>y</sup>, then a/b = g<sup>x</sup>/g<sup>y</sup>
-= g<sup>x-y</sup> = g<sup>(x-y)mod 255</sup>. Where g is one of the generators
-we talked about earlier. 
+= g<sup>x-y</sup> = g<sup>(x-y) mod 255</sup> where g is one of the generators
+we talked about earlier.
 
-Or we could use the built in division support in sage:
+Or we could use the built in division support in Sage:
 
 ```python
 R.<x> = PolynomialRing(GF(2^8), 'x')
-S.<a> = QuotientRing(R, R.ideal(x^8+x^4+x^3+x+1))
+S.<a> = QuotientRing(R, R.ideal(x^8 + x^4 + x^3 + x + 1))
 
 z7 = a^3 + a + 1
 z8 = x^5 + a^4 + 1
 print(z8 / z7)
 ```
 
-Which prints: a^2 + a + 1
+Which prints: `a^2 + a + 1`
