@@ -207,7 +207,7 @@ reads 0x68 which is 104 in decimal.
 3<sup>198</sup>. 198 is 0xC6 so by looking in row 13 column 7 of the exponent
 table we find the value 0x07, which is the answer.
 
-0x07 could also be written as a polynom: x<sup>2</sup> + x + 1
+0x07 could also be written as a polynomial: x<sup>2</sup> + x + 1
 
 Or we could use the built in division support in Sage:
 
