@@ -225,5 +225,5 @@ Which prints: `a^2 + a + 1`
 ## Postface
 
 By understanding how the basic math functions work we have now laid a 
-foundation to try to understanding more advanced analyses of AES, but that
+foundation to try to understand more advanced analyses of AES, but that
 will be another blog post.
