@@ -198,6 +198,17 @@ a = g<sup>x</sup> and b = g<sup>y</sup>, then a/b = g<sup>x</sup>/g<sup>y</sup>
 = g<sup>x-y</sup> = g<sup>(x-y) mod 255</sup> where g is one of the generators
 we talked about earlier.
 
+To take an example, 49 / 11 becomes 3<sup>47</sup> / 3<sup>104</sup> by looking
+up the numbers 49 and 11 in the logarithm table above. 49 is 0x31 so row 4 
+column 2 which reads 0x2F or 47 in decimal. 11 is 0x0b so row 1 column 12 which
+reads 0x68 which is 104 in decimal.
+
+3<sup>47</sup> / 3<sup>104</sup> becomes 3<sup>47 - 104 mod 255</sup> or
+3<sup>198</sup>. 198 is 0xC6 so by looking in row 13 column 7 of the exponent
+table we find the value 0x07, which is the answer.
+
+0x07 could also be written as a polynom: x<sup>2</sup> + x + 1
+
 Or we could use the built in division support in Sage:
 
 ```python
@@ -210,3 +221,9 @@ print(z8 / z7)
 ```
 
 Which prints: `a^2 + a + 1`
+
+## Postface
+
+By understanding how the basic math functions work we have now laid a 
+foundation to try to understanding more advanced analyses of AES, but that
+will be another blog post.
