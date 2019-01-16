@@ -200,7 +200,7 @@ we talked about earlier.
 
 To take an example, 49 / 11 becomes 3<sup>47</sup> / 3<sup>104</sup> by looking
 up the numbers 49 and 11 in the logarithm table above. 49 is 0x31 so row 4 
-column 2 which reads 0x2F or 47 in decimal. 11 is 0x0b so row 1 column 12 which
+column 2 which reads 0x2F or 47 in decimal. 11 is 0x0B so row 1 column 12 which
 reads 0x68 which is 104 in decimal.
 
 3<sup>47</sup> / 3<sup>104</sup> becomes 3<sup>47 - 104 mod 255</sup> or
