@@ -19,7 +19,7 @@ Big thanks to capitol and karltk for the help around the Java tools!
 
 
 #### Writeup
-The challenge consisted in the following set of Java (compiled) classes:
+The challenge consisted of the following set of Java (compiled) classes:
 ```text
 Authenticator.class
 jBaseZ85.class
@@ -33,8 +33,8 @@ Verifier6.class
 Verifier7.class
 ```
 
-The text description tells us to run: `java Authenticator [password]`, so thats our starting point.\
-After decompiling `Authenticator.class` in Ghidra we get the main and checkFlag methods:
+The text description tells us to run: `java Authenticator [password]`, so that's our starting
+point. After decompiling `Authenticator.class` in Ghidra we get the main and checkFlag methods:
 
 ```java
 void main_java.lang.String[]_void(String[] param1)
