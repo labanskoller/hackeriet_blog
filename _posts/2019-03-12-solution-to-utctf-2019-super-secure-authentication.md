@@ -140,10 +140,10 @@ boolean checkFlag_java.lang.String_boolean(String param1)
 }
 ```
 
-From the code above we understand that the flag is composed by 8 tokens and has the form `utflag{token0_token1_token2_token3_token4_token5_token6_token7}`, where each tokenX is validated by each VerifierX.class.\
+From the code above we understand that the flag is composed by 8 tokens and has the form `utflag{token0_token1_token2_token3_token4_token5_token6_token7}`, where each tokenX is validated by each VerifierX.class.
 So we continue to decompile the first one (Verifier0) of these classes. The decompiled class looks gigantic, but from the code we could spot two important things.
 
-(a) There is a static initializer, which allocates a big string and calls `jBaseZ85.decode` with it and this is stored in a static member of the class.\
+(a) There is a static initializer, which allocates a big string and calls `jBaseZ85.decode` with it and this is stored in a static member of the class.
 The code looks something like the following:
 
 ```java
@@ -192,7 +192,7 @@ boolean verifyFlag_java.lang.String_boolean(String param1)
 }
 ```
 
-So from (a) and (b) we have an idea of what we need to do: in order to get to the last state of the `Verifier0` class we need to decode those strings with Z85, dump the class, and reverse the `verifyFlag` method. \
+So from (a) and (b) we have an idea of what we need to do: in order to get to the last state of the `Verifier0` class we need to decode those strings with Z85, dump the class, and reverse the `verifyFlag` method.
 To automate part of that job we wrote a simple python 3 script that uses `javap` to dump the stored strings and `pyzmq` to decode the new verifier class, after playing a bit with the script we also realized that this obfuscation is done several times.
 
 ```python
@@ -269,7 +269,7 @@ $ file work/dump.class
 work/dump.class: compiled Java class data, version 52.0 (Java 1.8)
 ```
 
-Now is only a matter of dumping and reversing each class. \
+Now is only a matter of dumping and reversing each class.
 We wrote another python 3 script with the logic of each token verifier:
 
 ```python
