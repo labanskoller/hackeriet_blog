@@ -25,9 +25,8 @@ Public Key 569581432115411077780908947843367646738369018797567841
 
 Can you decrypt Jacobi's encryption?
 
-def encrypt(m, pub_key):
-
 ```python
+def encrypt(m, pub_key):
     bin_m = ''.join(format(ord(x), '08b') for x in m)
     n, y = pub_key
 
