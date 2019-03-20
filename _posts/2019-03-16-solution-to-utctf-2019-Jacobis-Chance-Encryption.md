@@ -18,7 +18,7 @@ crypto
 
 ![red herrings](/images/red-herrings.png)
 
-We got this challenge text and a implementation of a strange crypto system that
+We got this challenge text and an implementation of a strange crypto system that
 we needed to break:
 
 Public Key 569581432115411077780908947843367646738369018797567841
@@ -46,14 +46,14 @@ Looking at the implementation it does some really strange things. It loops over 
 plaintext and gets a large random number `x`. Then it checks if the bit is 1 or 0 and encodes
 that information as either y * x<sup>2</sup> or x<sup>2</sup> in the congruence class of y.
 
-There is also a public key involved, that's just two primes multiplied together, but it's more
+There is also a public key involved that's just two primes multiplied together, but it's more
 of a red herring.
 
-This is actually a kind of neat algebra problem, we want to know if a number is a was
+This is actually a kind of neat algebra problem. We want to know if a number was
 a square of itself before it got reduced by modulo `n` or not, and we know that `n` and the number
 are coprime.
 
-As with all math problems, someone have solved this in sage already. The name of function is
+As with all math problems, someone has solved this in sage already. The name of the function is
 `kronecker`, so all we had to do was to write a small sage program to reverse the crypto function.
 
 ```python
@@ -85,5 +85,5 @@ for b in data:
 print(sol)
 ```
 
-Flag was `utflag{did_u_pay_attention_in_number_theory}`.
+The flag was `utflag{did_u_pay_attention_in_number_theory}`.
 
