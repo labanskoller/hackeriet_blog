@@ -193,7 +193,7 @@ boolean verifyFlag_java.lang.String_boolean(String param1)
 ```
 
 So from (a) and (b) we have an idea of what we need to do: in order to get to the last state of the `Verifier0` class we need to decode those strings with Z85, dump the class, and reverse the `verifyFlag` method.
-To automate part of that job we wrote a simple Python 3 script that uses `javap` to dump the stored strings and `pyzmq` to decode the new verifier class, after playing a bit with the script we also realized that this obfuscation is done several times.
+To automate part of that job we wrote a simple Python 3 script that uses `javap` to dump the stored strings and `pyzmq` to decode the new verifier class. After playing a bit with the script we also realized that this obfuscation is done several times.
 
 ```python
 #!python3
@@ -259,7 +259,7 @@ if len(sys.argv) > 1:
 
 ```
 
-After running the script with the name of the class we want to dump we get the deobfuscated version of Verifier0 class!
+After running the script with the name of the class we want to dump we get the deobfuscated version of the Verifier0 class!
 ```bash
 $ python3 dump.py Verifier0
 
