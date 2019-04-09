@@ -16,6 +16,7 @@ can be used to evaluate code trough the second argument of the function.
 use Mojo::Util qw(url_escape);
 url_escape('some-stuff', '\w](?{die()})|[a'); # Dies!
 ```
+Not considered a vulnerability[^1].
 
 ## The [`url_escape`](https://mojolicious.org/perldoc/Mojo/Util#url_escape) function
 
@@ -125,11 +126,14 @@ So we're left with:
 url_escape('some-stuff', '\w](?{die()})|[a'); # Dies!
 ```
 
-## Is this a vulnerability[^1]? 
+## Is this a vulnerability? 
 
-Imho, this could allow for some vulnerability chaining. But the behaviour is
-not exploitable under normal usage, and the function must be used incorrectly to
-create a vulnerability. So - I'm not sure.
+The Mojolicious team reviewed a
+[PoC](/assets/bcb314da8be677049c40d8a4601fb5c1c133ad3637ad9a4bb5caf83b39603a70-mojo-url-escape.pl)
+before this post, and concluded that it was not a security vulnerability.
+
+Imho, this could allow for some vulnerability chaining. But the behaviour is not
+exploitable unless function must be used incorrectly.
 
 How to create vulnerable code:
 
@@ -161,6 +165,4 @@ Regular expressions in Perl are very powerful, functions that return lists can
 be scary, and library functions can have hidden features.
 
 
----
-[^1]: The Mojolicious team reviewed a [PoC](/assets/bcb314da8be677049c40d8a4601fb5c1c133ad3637ad9a4bb5caf83b39603a70-mojo-url-escape.pl) before this post, and concluded that it was not a security vulnerability.
 
