@@ -9,7 +9,7 @@ category: security
 Let's look at the 
 [url_escape](https://mojolicious.org/perldoc/Mojo/Util#url_escape) function in
 the [Mojolicious](https://mojolicious.org/) web framework for Perl 5, and how it
-can be ~~ab~~used[^1] to evaluate code trough the second argument of the function.
+can be used[^1] to evaluate code trough the second argument of the function.
 
 ## TLDR;
 ```perl
