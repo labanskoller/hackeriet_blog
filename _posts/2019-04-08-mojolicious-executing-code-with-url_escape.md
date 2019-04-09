@@ -16,7 +16,6 @@ can be used to evaluate code trough the second argument of the function.
 use Mojo::Util qw(url_escape);
 url_escape('some-stuff', '\w](?{die()})|[a'); # Dies!
 ```
-Not considered a vulnerability[^1].
 
 ## The [`url_escape`](https://mojolicious.org/perldoc/Mojo/Util#url_escape) function
 
