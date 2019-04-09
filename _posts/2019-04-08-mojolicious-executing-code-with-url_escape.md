@@ -133,7 +133,7 @@ The Mojolicious team reviewed a
 before this post, and concluded that it was not a security vulnerability.
 
 Imho, this could allow for some vulnerability chaining. But the behaviour is not
-exploitable unless function must be used incorrectly.
+exploitable unless function is used incorrectly.
 
 How to create vulnerable code:
 
