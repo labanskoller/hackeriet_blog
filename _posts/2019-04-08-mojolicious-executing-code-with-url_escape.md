@@ -162,5 +162,5 @@ be scary, and library functions can have hidden features.
 
 
 ---
-[^1]: The Mojolicious team reviewed a [PoC](assets/bcb314da8be677049c40d8a4601fb5c1c133ad3637ad9a4bb5caf83b39603a70-mojo-url-escape.pl) before this post, and concluded that it was not a security vulnerability.
+[^1]: The Mojolicious team reviewed a [PoC](/assets/bcb314da8be677049c40d8a4601fb5c1c133ad3637ad9a4bb5caf83b39603a70-mojo-url-escape.pl) before this post, and concluded that it was not a security vulnerability.
 
