@@ -9,7 +9,7 @@ category: security
 Let's look at the 
 [url_escape](https://mojolicious.org/perldoc/Mojo/Util#url_escape) function in
 the [Mojolicious](https://mojolicious.org/) web framework for Perl 5, and how it
-can be used to evaluate code trough the second argument of the function.
+can be used to evaluate code through the second argument of the function.
 
 ## TLDR;
 ```perl
@@ -60,7 +60,7 @@ generate, [string eval](https://perldoc.perl.org/functions/eval.html#String-eval
 Subsequent calls with the same `$pattern` will [re-use](https://github.com/mojolicious/mojo/commit/a7cdf6fb2c60c28ac4ab9ffad0e528bb23b0f7b8) the generated code.
 
 So, an input parameter to the function is interpolated into a string which is
-eval'ed... Interesting! Let's try to inject some code :D
+evaled... Interesting! Let's try to inject some code. :D
 
 ## Quoting
 
@@ -78,7 +78,7 @@ Damn... So close!
 
 It doesn't appear that we can (easily) break out of the substitution expression,
 so let's try something inside the expression instead, like [(?{
-code })](https://perldoc.perl.org/perlre.html#%28%3f%7b-code-%7d%29)
+code })](https://perldoc.perl.org/perlre.html#%28%3f%7b-code-%7d%29).
 
 
 > [code subpattern](https://perldoc.perl.org/perlglossary.html#code-subpattern):
@@ -95,10 +95,9 @@ out:
 > have taint checking enabled. Better yet, use the carefully constrained
 > evaluation within a Safe compartment. [..]
 
-Normally, adding `(?{ code })` to a pattern trough string interpolation will
-result in a fatal error, unless `use re 'eval'` is set. But since the
-code we want to tamper with is string evaled, these restrictions do not
-apply. 
+Normally, adding `(?{ code })` to a pattern through string interpolation would
+result in a fatal error, unless `use re 'eval'` is set. But since the code we
+want to tamper with is string evaled, these restrictions do not apply.
 
 ## Crafting the `$pattern` argument
 
@@ -107,7 +106,8 @@ This is what we want to execute:
 die()
 ```
 
-Let's wrap `die()` in a code subpattern and add some stuff to both sides of it to make it compile, and match.
+Let's wrap `die()` in a code subpattern and add some stuff to both sides of it
+to make it match and compile.
 
 ```perl
 '\w](?{die()})|[a'
@@ -129,19 +129,20 @@ url_escape('some-stuff', '\w](?{die()})|[a'); # Dies!
 
 The Mojolicious team reviewed a
 [PoC](/assets/bcb314da8be677049c40d8a4601fb5c1c133ad3637ad9a4bb5caf83b39603a70-mojo-url-escape.pl)
-before this post, and concluded that it was not a security vulnerability.
+before this post and concluded that it was not a security vulnerability.
 
-Imho, this could allow for some vulnerability chaining. But the behaviour is not
-exploitable unless function is used incorrectly.
+This behaviour is not exploitable unless the function is used incorrectly. It
+could for example allow for vulnerability chaining if a bug is found that allows
+an attacker to control the `$pattern` argument.
 
-How to create vulnerable code:
+### How to create vulnerable code:
 
 1. The most obvious way to create a vulnerability is to expose the second
    `$pattern` argument of `url_escape` directly to user input. Game
    Over.
    
-2. A more subtle way, is by having a another function return a list with
-   elements that an attacker can control as arguments to `url_escape`.
+2. A more subtle way is by having a another function return a list of strings
+   that an attacker can control as arguments to `url_escape`.
    
    ```perl
    use Mojo::Util qw(url_escape);
