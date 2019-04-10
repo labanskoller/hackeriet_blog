@@ -141,8 +141,8 @@ an attacker to control the `$pattern` argument.
    `$pattern` argument of `url_escape` directly to user input. Game
    Over.
    
-2. A more subtle way is by having a another function return a list of strings
-   that an attacker can control as arguments to `url_escape`.
+2. A more subtle way is by having another function return a list an attacker can
+   control as arguments to `url_escape`.
    
    ```perl
    use Mojo::Util qw(url_escape);
