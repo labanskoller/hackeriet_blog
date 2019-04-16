@@ -46,6 +46,9 @@ versions of these tools) might be a little different on other distros.
 Desired partitioning scheme may, of course, vary. Sizes of my different
 partitions are based on my personal usage pattern.
 
+Make sure that your hand-typed password is inside the very first key-slot.
+This will reduce boot time. GRUB will try each key-slot in turn.
+
 ### Programs used
 
 Multiple programs are used in the task to make this work. Prepare to get to know
@@ -443,11 +446,12 @@ Then replace `%uuid%` with the UUID of the LVM partition.
 This can of course be done manually, but when stuck in a terminal, it might be
 easier to do with `sed`
 
-    # sed -i s/%uuid%/$(blkid -o value -s UUID /dev/nvme0n3)/ /etc/default/grub
+    # sed -i s/%uuid%/$(blkid -o value -s UUID /dev/nvme0n1p3)/ /etc/default/grub
 
-**BIOS:** Register GRUB on the MBR:
+**BIOS:** Register GRUB on the MBR. Note that the reference is to the disk
+(*nvme0n1)*, **not** to the partition (*nvme0n1p1*):
 
-    # grub-mkconfig -o /boot/grub/grub.cfg
+    # grub-install --target=i386-pc /dev/nvme0n1
 
 **UEFI:** verify that the ESP is mounted to `/boot/efi`
 with `lsblk`, then install the bootloader to the ESP
@@ -465,9 +469,9 @@ boot partition on successful boot using its keyfile
     # inside /etc/crypttab
     encrypted-boot UUID=%uuid% /etc/initcpio/keys/encrypted-boot.key luks
 
-Again, replace `%uuid%` with the actual UUID of the boot partition at `/dev/nvmen1p2`
+Again, replace `%uuid%` with the actual UUID of the boot partition at `/dev/nvme0n1p2`
 
-    # sed -i s/%uuid%/$(blkid -o value -s UUID /dev/nvme0n2)/ /etc/crypttab
+    # sed -i s/%uuid%/$(blkid -o value -s UUID /dev/nvme0n1p2)/ /etc/crypttab
 
 All set! Rebooting is the only way to figure out if it was set up correctly
 or not.
@@ -475,8 +479,6 @@ or not.
     # reboot
 
 Please send me an e-mail if you have any troubles -- or if you didn't.
-
-This is a [cross-post from blog.stigok.com](https://blog.stigok.com/2018/05/03/lvm-in-luks-with-encrypted-boot-partition-and-suspend-to-disk.html).
 
 ## References
 
@@ -487,7 +489,9 @@ Links that are not already scattered within the document
 - https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#mkinitcpio
 - https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_.28GPT.29_specific_instructions
 - https://jlk.fjfi.cvut.cz/arch/manpages/man/alpm-hooks.5
+- https://linux-blog.anracom.com/2018/11/30/full-encryption-with-luks-sha512-aes-xts-plain64-grub2-really-slow/
 
 [Arch Wiki hibernation notes]: https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#About_swap_partition.2Ffile_size
 [random urandom]: https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom
 
+This is a [cross-post from blog.stigok.com](https://blog.stigok.com/2018/05/03/lvm-in-luks-with-encrypted-boot-partition-and-suspend-to-disk.html).
