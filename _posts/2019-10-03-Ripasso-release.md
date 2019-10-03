@@ -44,3 +44,12 @@ git clone git@github.com:cortex/ripasso.git
 cd ripasso
 cargo build -p ripasso-cursive
 ```
+
+### Credits
+
+ * Joakim Lundborg - developer
+ * Alexander Kjäll - developer
+ * Stig Palmquist - NixOS packager
+ * David Plassman - Arch packager
+
+Also a big thanks to everyone who contributed with bug reports and patches.
