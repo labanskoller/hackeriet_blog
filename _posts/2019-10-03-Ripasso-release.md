@@ -33,7 +33,7 @@ Ripasso is written in rust and so far packaged in nix and arch.
 
 `yay install ripasso-git`
 
-#### NixOS
+#### Nix
 
 `nix-env -iA nixpkgs.ripasso-cursive`
 
