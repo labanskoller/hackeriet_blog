@@ -62,8 +62,9 @@ these tools just a little bit better.
 
 ## Preparations
 
-Boot up Arch Linux installation media and follow the official installation
-procedure up until partitioning.
+Boot up Arch Linux installation media and follow the [official installation
+procedure](https://wiki.archlinux.org/index.php/Installation_guide) up until
+*Partition the disks*.
 
 The main storage device you want to use should be backed up before continuing.
 
@@ -161,19 +162,21 @@ File systems for the other partitions will be created after the LUKS and LVM has
 
 Create a LUKS container on the root partition. You will be asked for confirmation and prompted
 for a passphrase when running this command. **Make sure this passphrase is memorable to you**.
-You have to decide for yourself if using these parameters is worth it. If you're unsure, remove
-all of them and use the defaults (`cryptsetup -v luksFormat /dev/nvme0n1p3`).
 
-It must also be noted that the amount of hash iterations will increase the time Grub spends on
-decrypting the boot partition. Grub is not very fast at iterating, so at my system, 100,000
+It must also be noted that the amount of hash iterations will increase the time GRUB spends on
+decrypting the boot partition. GRUB is not very fast at iterating, so at my system, 100,000
 iterations takes roughly 40 secods. This might be an unacceptable wait time. You will have to
-benchmark yourself. Don't worry if you get this wrong the first time around. It is not overly
-complicated to re-encrypt the boot partition at a later time.
+benchmark yourself (`cryptsetup benchmark`). Don't worry if you get this wrong the first time
+around. It is not overly complicated to re-encrypt the boot partition at a later time.
+
+You have to decide for yourself if customising the parameters for `luksFormat` is worth it.
+If you're unsure, remove all of them and use the defaults (`cryptsetup -v luksFormat <device>`).
 
 Read the outputs of these commands carefully. In particular how to say *yes*. Start by creating
-the luks container for encrypted boot
+the luks container for encrypted boot. The boot partition must be of type `luks1` since support
+for LUKS2 headers is missing in GRUB right now ([GRUB bug report](https://savannah.gnu.org/bugs/?55093)).
 
-    # cryptsetup -v --key-size 512 --hash sha256 --iter-time 5000 --use-random luksFormat /dev/nvme0n1p2
+    # cryptsetup -v --key-size 512 --type luks1 --hash sha256 --iter-time 5000 --use-random luksFormat /dev/nvme0n1p2
 
 Then create the root container
 
@@ -196,10 +199,11 @@ make all sub-volumes mapped as `Main-<name>`.
 
     # vgcreate Main /dev/mapper/encrypted-lvm
 
-Create desired logical volumes on the volume group.
+Now, let's move on to creating desired logical volumes in the volume group.
 
 Note that the swap partition should be greater than or equal to the amount of system RAM for
-suspend-to-disk to work properly (16GB in this case).
+suspend-to-disk to work properly (16GB in this case). You can check your system with
+`cat /proc/meminfo`.
 [According to ArchWiki][Arch Wiki hibernation notes], hibernation *may be successful* even if
 the swap partition is smaller than the total system memory, but I want to increase my chances.
 
@@ -251,7 +255,7 @@ the boot partition has been mounted.
     # mkdir /mnt/boot/efi
     # mount /dev/nvme0n1p1 /mnt/boot/efi
 
-**BIOS:** Don't mount `nvme0n1p1`. GRUB will write to it later without mounting.
+**BIOS:** Don't mount `nvme0n1p1`. GRUB will write to it later without mounting it.
 
 **BOTH:** Mount the home partition
 
@@ -268,26 +272,24 @@ Unless you're installing Arch Linux yourself, you'd probably want to skip direct
 the next step. However, it might be smart to glance through here to understand how
 my system is set up.
 
-## Prepare for chroot
+If you find it hard to follow the next steps, consult [the official installation
+guide's installation section](https://wiki.archlinux.org/index.php/Installation_guide#Installation).
 
-Re-order the list of package mirrors pacman is using if desired. I am selecting the
-mirrors closest to my geographical location to the top of my list, then leaving
-everything else as it is. This file will be automatically be copied to the new
-system later on.
+## Prepare for chroot
 
 If you're plugged in with ethernet but haven't configured an IP address yet, try
 get one through DHCP before continuing, as it expects a working internet connection.
-
-Again, I have a crazy device name here; *enp0s31f6* (aka *eth0*)
+Again, I have a crazy device name. *enp0s31f6* might be *eth0* on other systems or
+distros.
 
     # dhclient enp0s31f6
 
 You should now be connected to the internet.
 
 Install base packages. Add *your* favorite editor instead of `vim` if you'd like,
-and only add `efibootmgr` if you are on a **UEFI** system.
+and skip adding `efibootmgr` if you are **not** on a **UEFI** system.
 
-    # pacstrap /mnt base base-devel vim grub efibootmgr
+    # pacstrap /mnt base base-devel linux lvm2 vim grub mkinitcpio efibootmgr
 
 Generate the fstab then *open the file to see if it looks right*
 
@@ -308,7 +310,7 @@ Configure desired locales in `/etc/locale.gen` then generate them
 
     # locale-gen
 
-then configure your defaults in `/etc/locale.conf`. I want English language
+Configure your defaults in `/etc/locale.conf`. I want English language
 with Norwegian date and time formats
 
     # cat > /etc/locale.conf
@@ -382,10 +384,14 @@ Do the same for the *encrypted-lvm* partition
     # cryptsetup luksAddKey /dev/nvme0n1p3 /etc/initcpio/keys/encrypted-lvm.key
 
 Now that the LVM container has a keyfile attached, the passphrase used
-initially when creating the LUKS container can **optionally** be removed
-from the device.
+initially when creating the LUKS container **can optionally** be removed
+from the device. If this is done, unlocking the boot partition is the **only
+way** to recover the key-file used to unlock the LVM partition.
+**Use the below command with caution**. Depending on your security
+threat-model, this might be unecessary.
 
-    # cryptsetup luksKillSlot /dev/nvme0n1p3 0 --keyfile /etc/initcpio/keys/encrypted-lvm.key
+    # # Skip this step if you don't understand the risks.
+    # cryptsetup luksKillSlot /dev/nvme0n1p3 0 --key-file /etc/initcpio/keys/encrypted-lvm.key
 
 Create the initial ramdisk environment and make sure it doesn't return any errors.
 Some warning may show, but errors should not occur.
@@ -393,9 +399,9 @@ Some warning may show, but errors should not occur.
     # mkinitcpio -p linux
 
 Set strict permissions for the ramdisk images now that the decryption keys
-are embedded
+are embedded in them
 
-    # chmod 0600 /boot/initramfs-linux*
+    # chmod 0400 /boot/initramfs-linux*
 
 These permissions will be reset every time `mkinitcpio` is run. Typically it
 is automatically triggered after a package install or upgrade occurs that
@@ -413,18 +419,19 @@ hook for pacman inside `/etc/pacman.d/hooks/99-initramfs-chmod.hook`:
     [Action]
     Description = Setting proper permissions for linux initcpios...
     When = PostTransaction
-    Exec = /usr/bin/chmod 0600 /boot/initramfs-linux.img /boot/initramfs-linux-fallback.img
+    Exec = /usr/bin/chmod 0400 /boot/initramfs-linux.img /boot/initramfs-linux-fallback.img
 
 Make sure this works as intended by re-installing mkinitcpio
 
-    # pacman -S mkinitcpio`
+    # pacman -S mkinitcpio
 
-You should see a line in the output confirming the script ran
+You should see a line in the output confirming that the script ran
 
     :: Running post-transaction hooks...
-    (1/5) Updating linux initcpios...
     [ redacted ]
-    (2/5) Setting proper permissions for linux initcpios...
+    (4/5) Updating linux initcpios...
+    [ redacted ]
+    (5/5) Setting proper permissions for linux initcpios...
     [ redacted ]
 
 And see that the permissions actually changed
@@ -439,7 +446,7 @@ Update the following line in `/etc/default/grub`
 
     GRUB_CMDLINE_LINUX="cryptdevice=UUID=%uuid%:encrypted-lvm root=/dev/mapper/Main-root resume=/dev/mapper/Main-swap cryptkey=rootfs:/encrypted-lvm.key"
 
-And, in the same file, un-comment the `GRUB_ENABLE_CRYPTODISK` to enable booting
+And, in the same file, un-comment the `GRUB_ENABLE_CRYPTODISK=y` to enable booting
 from an encrypted system.
 
 Then replace `%uuid%` with the UUID of the LVM partition.
@@ -463,8 +470,8 @@ It's okay to get `WARNING: Failed to connect to lvmetad` while inside the chroot
 
     # grub-mkconfig -o /boot/grub/grub.cfg
 
-Create an entry in `/etc/crypttab` to make systemd automatically decrypt the
-boot partition on successful boot using its keyfile
+Create an entry in `/etc/crypttab` to make systemd decrypt and mount the
+boot partition automatically on successful boot using its keyfile
 
     # inside /etc/crypttab
     encrypted-boot UUID=%uuid% /etc/initcpio/keys/encrypted-boot.key luks
@@ -476,22 +483,47 @@ Again, replace `%uuid%` with the actual UUID of the boot partition at `/dev/nvme
 All set! Rebooting is the only way to figure out if it was set up correctly
 or not.
 
+    # exit
     # reboot
 
-Please send me an e-mail if you have any troubles -- or if you didn't.
+Please send me an e-mail if you have any troubles -- or if you didn't!
+
+## Troubleshooting
+
+### Dumped to GRUB rescue shell
+
+If you are dumped to grub rescue mode when booting, chances are that there's
+a typo or two somewhere in your configuration files. To avoid having to start
+over again from scratch, you can boot again with the Arch Linux installation
+media and unlock, mount and chroot back to where you were before rebooting.
+
+```terminal
+# cryptsetup open /dev/sda3 encrypted-lvm
+# mount /dev/mapper/Main-root /mnt
+# cryptsetup open /dev/sda2 encrypted-boot
+# mount /dev/mapper/encrypted-boot /mnt/boot
+# mount /dev/sda1 /mnt/boot/efi
+# mount /dev/mapper/Main-home /mnt/home
+# swapon /dev/mapper/Main-swap
+# arch-chroot /mnt
+```
+
+If you want to dig through the rescue mode, you can see my [other post covering
+possible recovery][grub rescue post] from the shell itself.
 
 ## References
 
 Links that are not already scattered within the document
 
-- https://wiki.archlinux.org/index.php/Mkinitcpio#Common_hooks
-- https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Preparing_the_logical_volumes
-- https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#mkinitcpio
-- https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_.28GPT.29_specific_instructions
-- https://jlk.fjfi.cvut.cz/arch/manpages/man/alpm-hooks.5
-- https://linux-blog.anracom.com/2018/11/30/full-encryption-with-luks-sha512-aes-xts-plain64-grub2-really-slow/
+- <https://wiki.archlinux.org/index.php/Mkinitcpio#Common_hooks>
+- <https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#Preparing_the_logical_volumes>
+- <https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#mkinitcpio>
+- <https://wiki.archlinux.org/index.php/GRUB#GUID_Partition_Table_.28GPT.29_specific_instructions>
+- <https://jlk.fjfi.cvut.cz/arch/manpages/man/alpm-hooks.5>
+- <https://linux-blog.anracom.com/2018/11/30/full-encryption-with-luks-sha512-aes-xts-plain64-grub2-really-slow/>
 
 [Arch Wiki hibernation notes]: https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate#About_swap_partition.2Ffile_size
 [random urandom]: https://unix.stackexchange.com/questions/324209/when-to-use-dev-random-vs-dev-urandom
+[grub rescue post]: /2017/12/30/decrypt-and-mount-luks-disk-from-grub-rescue-mode.html
 
 This is a [cross-post from blog.stigok.com](https://blog.stigok.com/2018/05/03/lvm-in-luks-with-encrypted-boot-partition-and-suspend-to-disk.html).
