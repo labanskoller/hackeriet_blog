@@ -50,7 +50,7 @@ Newly created passwords that contained a . character wasn't accessible without a
 
 #### Arch linux
 
-Arch now have two packages, `ripasso-git` that tracks the development branch and `ripasso-cursive`
+Arch now has two packages, `ripasso-git` that tracks the development branch and `ripasso-cursive`
 that contains the stable version.
 
 `yay install ripasso-git`
