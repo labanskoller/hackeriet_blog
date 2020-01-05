@@ -31,7 +31,7 @@ set up. That guide now also gives you the opportunity to initialize a Git reposi
 We reworked to information at the bottom of the screen, moved the shortcuts into a menu and added
 a status bar that displays what's happening in the application.
 
-## Bugs fixed
+## Bugs Fixed
 
 #### Ctrl-W doesn't delete last word in search bar
 
@@ -46,7 +46,7 @@ Ownership of the Git repository object have now been moved so that it will only 
 
 Newly created passwords that contained a . character weren't accessible without a restart.
 
-### Install instructions
+## Install Instructions
 
 #### Arch Linux
 
@@ -71,7 +71,7 @@ cd ripasso
 cargo build -p ripasso-cursive
 ```
 
-### Credits
+## Credits
 
  * Joakim Lundborg - developer
  * Alexander Kjäll - developer
