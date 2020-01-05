@@ -6,49 +6,49 @@ category: infrastructure
 ---
 ![ripasso-cursive](/images/ripasso-cursive.png)
 
-We have just released version 0.3.0 of ripasso, a password manager that lets you
-control the level of risk that you expose your passwords too.
+We have just released version 0.3.0 of Ripasso, a password manager that lets you
+control the level of risk that you expose your passwords to.
 
 ## New Features
 
-#### Support for signing git commit's, if it's configured in gits config
+#### Support for signing Git commits, if it's configured in Git's config
 
-If you set the git configuration values `commit.gpgsign` and `user.signingkey`, then ripasso
-will respect them when creating git commit's and sign those.
+If you set the Git configuration values `commit.gpgsign` and `user.signingkey`, then Ripasso
+will respect them when creating Git commits and signing those.
 
 #### Display who touched a password last
 
-If the password store is backed by a git repository, then ripasso will read and display who changed
+If the password store is backed by a Git repository, then Ripasso will read and display who changed
 a password last.
 
-#### Support for initializing a git repo in the quick start wizard
+#### Support for initializing a Git repo in the quick start wizard
 
-If you start ripasso without a password store directory you will get a guide that helps you get
-set up, that guide now also gives you the opportunity to initialize a git repository.
+If you start Ripasso without a password store directory you will get a guide that helps you get
+set up. That guide now also gives you the opportunity to initialize a Git repository.
 
 #### Added a status bar, and a menu
 
 We reworked to information at the bottom of the screen, moved the shortcuts into a menu and added
 a status bar that displays what's happening in the application.
 
-## Bugs fixed
+## Bugs Fixed
 
-#### ctrl-w doesn't delete last word in search bar
+#### Ctrl-W doesn't delete last word in search bar
 
-Made ctrl-w behave as in the shell, so that you can delete last typed word with it.
+Made Ctrl-W behave as in the shell, so that you can delete last typed word with it.
 
-#### fixed performance problem if the git repo was large
+#### Fixed performance problem if the Git repo was large
 
-Ripasso initialized the git repository once for every operation that it did, which was very slow.
-Ownership of the git repository object have now been moved so that it will only be initialized once.
+Ripasso initialized the Git repository once for every operation that it did, which was very slow.
+Ownership of the Git repository object have now been moved so that it will only be initialized once.
 
-#### fixed problem with passwords that contained a . character
+#### Fixed problem with passwords that contained a . character
 
-Newly created passwords that contained a . character wasn't accessible without a restart.
+Newly created passwords that contained a . character weren't accessible without a restart.
 
-### Install instructions
+## Install Instructions
 
-#### Arch linux
+#### Arch Linux
 
 Arch now has two packages, `ripasso-git` that tracks the development branch and `ripasso-cursive`
 that contains the stable version.
@@ -71,7 +71,7 @@ cd ripasso
 cargo build -p ripasso-cursive
 ```
 
-### Credits
+## Credits
 
  * Joakim Lundborg - developer
  * Alexander Kjäll - developer
