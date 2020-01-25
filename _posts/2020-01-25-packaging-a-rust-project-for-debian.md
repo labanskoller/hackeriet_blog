@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Package a Rust project for Debian"
+title: "Packaging a Rust project for Debian"
 author: capitol
 category: infrastructure
 ---
