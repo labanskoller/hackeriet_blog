@@ -67,7 +67,7 @@ writing `..` in the password path.
  * Joakim Lundborg - Developer
  * Alexander Kjäll - Developer
  * Artem Polishchuk - Fedora packager
- * Silje Kristensen - Norwegian bokmål translation
+ * Silje Enge Kristensen - Norwegian bokmål translation
  * Eivind Syvertsen - Norwegian nynorsk translation
  * Enrico Razzetti - Italian translation
  * Camille Victor Prunier - French translation
