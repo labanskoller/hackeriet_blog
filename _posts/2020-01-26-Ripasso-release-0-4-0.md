@@ -41,7 +41,7 @@ In the previous versions, ripasso did the equivalence of a git blame on every pa
 in the repository, this was fine for small repositories, but for large ones it didn't work
 at all. The startup cost was on the order of O(n<sup>2</sup>) where n was the number of passwords.
 
-This have been replaced by walking through the history once and populating the meta data
+This have been replaced by walking through the history once and populating the metadata
 for each file as we see them in the history.
 
 #### Support for environmental variable `PASSWORD_STORE_SIGNING_KEY`
