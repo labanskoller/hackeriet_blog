@@ -17,8 +17,11 @@ This was a totally uncomplicated crate without anything special in it.
 ```
 DEBEMAIL="my.email@example.com"
 DEBFULLNAME="First-name Last-name"
-export DEBEMAIL DEBFULLNAME
+CHROOT=unstable-amd64-sbuild
+export DEBEMAIL DEBFULLNAME CHROOT
 ```
+
+We also added a CHROOT variable, this is explained in point 9.
 
 2) git clone https://salsa.debian.org/rust-team/debcargo-conf.git
 
