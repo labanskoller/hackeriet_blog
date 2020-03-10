@@ -134,6 +134,8 @@ After this talk we had a informal session of hacking on Nix things and
 socializing.
 
 The organizers (fnords & sgo) want to thank the speakers and everyone else that
-came to the mini-con! If you want to get notified of any future events in Oslo
+came to the mini-con! Special thanks to [NUUG
+Foundation](https://www.nuugfoundation.no/no/) for sponsoring this
+event! If you want to get notified of any future events in Oslo
 NixOS User Group, you can join our [Meetup
 group](https://www.meetup.com/Oslo-NixOS-User-Group/).
