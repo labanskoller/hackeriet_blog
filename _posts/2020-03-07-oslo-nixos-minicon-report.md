@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Oslo NixOS MiniCon 2020 rapport"
+title: "Oslo NixOS MiniCon 2020 report"
 author: fnords && sgo
 category: [talks, nixos]
 ---
