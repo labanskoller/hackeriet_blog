@@ -17,7 +17,7 @@ So that is what we will use also.
 
 Solving that problem requires solving a few sub-problems:
 
- * Extracting strings to extract from the source code
+ * Extracting strings to translate from the source code
  * Updating old translation files with new strings
  * Generating the binary translation files
  * Using the correct generated translation
@@ -27,10 +27,10 @@ Solving that problem requires solving a few sub-problems:
 The Gettext package contains a number of helper programs, among them `xgettext` which can be used
 to extract the strings from the Rust sources.
 
-One drawback is that Rust isn't on the list of languages that xgettext can parse. But rust is similar
+One drawback is that Rust isn't on the list of languages that xgettext can parse. But Rust is similar
 enough to C so that we can use that parser, as long as we don't have any multiline strings.
 
-In [ripasso](https://github.com/cortex/ripasso) we extract it like this:
+In [Ripasso](https://github.com/cortex/ripasso) we extract it like this:
 
 ```bash
 xgettext cursive/src/*rs -kgettext --sort-output -o cursive/res/ripasso-cursive.pot
@@ -45,8 +45,8 @@ program `msgmerge`:
 msgmerge --update cursive/res/sv.po cursive/res/ripasso-cursive.pot
 ```
 
-The .pot file is the template file that contain all the strings, and there will be one .po per language
-that contains the translations.
+The .pot file is the template file that contains all the strings, and there will be one .po per language
+that contains the translations for that language.
 
 A translator can open the .po file in a translation program, for example [poedit](https://poedit.net/)
 and translate it.
@@ -56,7 +56,7 @@ and translate it.
 We do this with a third utility program from Gettext, called `msgfmt`, called from build.rs. It reads
 the .po files and generates binary .mo files.
 
-This code from ripasso is a bit verbose/ugly, but it gets the job done.
+This code from Ripasso is a bit verbose/ugly, but it gets the job done.
 
 ```rust
 fn generate_translation_files() {
@@ -130,10 +130,10 @@ The .mo files will end up in `target/translations/cursive/`, one file per langua
 ## Using the correct generated translation
 
 The best crate I found was [gettext](https://crates.io/crates/gettext). There were also others
-but they required unstable Rust features and was therefore unusable. Since the various linux
-distributions use the stable rust to compile their packages.
+but they required unstable Rust features and was therefore unusable. Since the various Linux
+distributions use the stable Rust to compile their packages.
 
-During runtime, the translations lives inside a lazy_static variable:
+During runtime, the translations live inside a lazy_static variable:
 
 ```rust
 lazy_static! {
@@ -142,7 +142,7 @@ lazy_static! {
 ```
 
 But getting the correct translation into that variable can be a bit tricky. Here is how we do it
-in ripasso:
+in Ripasso:
 
 ```rust
 fn get_translation_catalog() -> gettext::Catalog {
@@ -193,5 +193,5 @@ that it defaults back to english.
 
 ## Conclusion
 
-Translating rust programs isn't as straight forward as it could be, but it's in no way impossible
+Translating Rust programs isn't as straight forward as it could be, but it's in no way impossible
 and well worth doing.
