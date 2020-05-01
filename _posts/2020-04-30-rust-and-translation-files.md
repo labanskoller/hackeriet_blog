@@ -130,7 +130,7 @@ The .mo files will end up in `target/translations/cursive/`, one file per langua
 ## Using the correct generated translation
 
 The best crate I found was [gettext](https://crates.io/crates/gettext). There were also others
-but they required unstable Rust features and was therefore unusable. Since the various Linux
+but they required unstable Rust features and were therefore unusable. Since the various Linux
 distributions use the stable Rust to compile their packages.
 
 During runtime, the translations live inside a lazy_static variable:
@@ -180,16 +180,16 @@ fn get_translation_catalog() -> gettext::Catalog {
 }
 ```
 
-A few things needs explaining. First about the paths, `/usr/share/ripasso` is the default and always
+A few things need explaining. First about the paths, `/usr/share/ripasso` is the default and always
 a place where we search for translation files. The `option_env!` macro is there so that different
 distributions can specify their own paths during compile time. The check `cfg!(debug_assertions)`
 is true when running in debug mode, and is there so that it's easy to test a translation while you
 are working on it.
 
-The for loop selects the most fitting language based on how the user have configured their locale.
+The for loop selects the most fitting language based on how the user has configured its locale.
 
 If none of those match the languages that we have available, we return an empty Catalog, which means
-that it defaults back to english.
+that it defaults back to English.
 
 ## Conclusion
 
