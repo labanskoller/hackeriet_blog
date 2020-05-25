@@ -6,36 +6,36 @@ category: infrastructure
 ---
 ![rusty-steel](/images/stainless_steel_iron_metal_rusty_weathered.jpeg)
 
-Lets do another dive into packaging rust for debian with a slightly more complicated example.
+Lets do another dive into packaging Rust for Debian with a slightly more complicated example.
 
 One great tool in the packagers toolbox is [cargo-debstatus](https://crates.io/crates/cargo-debstatus).
 By running it in the root of your crate you will get a list of your dependencies, together
-with information regarding it's packaging status in debian.
+with information regarding it's packaging status in Debian.
 
-For ripasso a part of the three looks like this at the time of writing, ripasso depends on gpgme
-which depends on a number of other rust libraries (and a number of native ones, that isn't shown here).
+For `ripasso` a part of the tree looks like this at the time of writing, `ripasso` depends on `gpgme`
+which depends on a number of other Rust libraries (and a number of native ones, that isn't shown here).
 ```
-??? gpgme v0.9.2
-?   ??? bitflags v1.2.1 (in debian)
-?   ??? conv v0.3.3
-?   ?   ??? custom_derive v0.1.7
-?   ??? cstr-argument v0.1.1 (in debian)
-?   ??? gpg-error v0.5.1 (in debian)
-?   ??? gpgme-sys v0.9.1
-?   ?   ??? libc v0.2.66 (in debian)
-?   ?   ??? libgpg-error-sys v0.5.1 (in debian)
-?   ??? libc v0.2.66 (in debian)
-?   ??? once_cell v1.3.1 (in debian)
-?   ??? smallvec v1.1.0 (in debian)
-?   ??? static_assertions v1.1.0
+├── gpgme v0.9.2
+│   ├── bitflags v1.2.1 (in debian)
+│   ├── conv v0.3.3
+│   │   └── custom_derive v0.1.7
+│   ├── cstr-argument v0.1.1 (in debian)
+│   ├── gpg-error v0.5.1 (in debian)
+│   ├── gpgme-sys v0.9.1
+│   │   ├── libc v0.2.66 (in debian)
+│   │   └── libgpg-error-sys v0.5.1 (in debian)
+│   ├── libc v0.2.66 (in debian)
+│   ├── once_cell v1.3.1 (in debian)
+│   ├── smallvec v1.1.0 (in debian)
+│   └── static_assertions v1.1.0
 
 ```
 
 One of the dependencies is [static_assertions](https://crates.io/crates/static_assertions) which
-actually already is packaged in debian, but version 0.3.3 and we need 1.1.0. Lets investigate how
+actually already is packaged in Debian, but version 0.3.3 and we need 1.1.0. Lets investigate how
 to fix this one.
 
-In order to verify that we won't break any other package by upgrading the existing debian package
+In order to verify that we won't break any other package by upgrading the existing Debian package
 to 1.1.0 we run [list-rdeps.sh](https://salsa.debian.org/rust-team/debcargo-conf/-/blob/master/dev/list-rdeps.sh).
 
 ```
@@ -107,7 +107,8 @@ Versions of rdeps of rust-nom in unstable, that also exist in testing:
 
 And a lot of things depends on nom.
 
-So in order to package gpgme we can choose one of three different strategies:
+So in order to package `static_assertions` so that we can package `gpgme` we can choose one of three
+different strategies:
 
 1. Package both versions of `static_assertions`
 2. Upgrade `lexical-core`, `nom` and everything `nom` depends on to newer versions
@@ -116,7 +117,7 @@ So in order to package gpgme we can choose one of three different strategies:
 ### Package both versions of `static_assertions`
 
 This is a working strategy, but packaging both means that we need to create a new package for
-version 0.3 of `static_assertions`. New packages in debian go through the new queue, where a member
+version 0.3 of `static_assertions`. New packages in Debian go through the new queue, where a member
 of the ftp masters team need to manually verify so that it doesn't contain any non-free software.
 
 Therefore we will not choose this strategy.
